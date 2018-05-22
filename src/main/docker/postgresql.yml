@@ -1,0 +1,11 @@
+version: '2'
+services:
+    rpt-postgresql:
+        image: postgres:9.6.5
+        # volumes:
+        #     - ~/volumes/jhipster/rpt/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=system
+        ports:
+            - 5432:5432
