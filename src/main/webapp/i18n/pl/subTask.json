@@ -1,0 +1,24 @@
+
+{
+    "rptApp": {
+        "subTask" : {
+            "home": {
+                "title": "Sub Tasks",
+                "createLabel": "Dodaj Sub Task",
+                "createOrEditLabel": "Dodaj lub edytuj: Sub Task"
+            },
+            "created": "Utworzono nowy Sub Task z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Sub Task z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Sub Task z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Sub Task {{ id }}?"
+            },
+            "detail": {
+                "title": "Sub Task"
+            },
+            "name": "Name",
+            "description": "Description",
+            "repair": "Repair"
+        }
+    }
+}

@@ -1,0 +1,48 @@
+
+<div *ngIf="car">
+    <h2><span jhiTranslate="rptApp.car.detail.title">Car</span> {{car.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="rptApp.car.make">Make</span></dt>
+        <dd>
+            <span>{{car.make}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.car.model">Model</span></dt>
+        <dd>
+            <span>{{car.model}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.car.vin">Vin</span></dt>
+        <dd>
+            <span>{{car.vin}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.car.productionDate">Production Date</span></dt>
+        <dd>
+            <span>{{car.productionDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.car.color">Color</span></dt>
+        <dd>
+            <span>{{car.color}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.car.owner">Owner</span></dt>
+        <dd>
+            <div *ngIf="car.ownerId">
+                <a [routerLink]="['/user-ext-my-suffix', car.ownerId]">{{car.ownerId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'car-my-suffix/'+ car.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

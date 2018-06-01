@@ -1,0 +1,26 @@
+
+{
+    "rptApp": {
+        "message" : {
+            "home": {
+                "title": "Messages",
+                "createLabel": "Message erstellen",
+                "createOrEditLabel": "Message erstellen oder bearbeiten"
+            },
+            "created": "Message erstellt mit ID {{ param }}",
+            "updated": "Message aktualisiert mit ID {{ param }}",
+            "deleted": "Message gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Message {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Message"
+            },
+            "topic": "Topic",
+            "text": "Text",
+            "read": "Read",
+            "creationDate": "Creation Date",
+            "sender": "Sender"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+
+{
+    "rptApp": {
+        "repair" : {
+            "home": {
+                "title": "Repairs",
+                "createLabel": "Dodaj Repair",
+                "createOrEditLabel": "Dodaj lub edytuj: Repair"
+            },
+            "created": "Utworzono nowy Repair z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Repair z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Repair z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Repair {{ id }}?"
+            },
+            "detail": {
+                "title": "Repair"
+            },
+            "name": "Name",
+            "description": "Description",
+            "cost": "Cost",
+            "startDate": "Start Date",
+            "finishDate": "Finish Date",
+            "subtask": "Subtask",
+            "photo": "Photo",
+            "restoration": "Restoration"
+        }
+    }
+}

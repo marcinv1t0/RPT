@@ -41,6 +41,19 @@ public class CacheConfiguration {
             cm.createCache(com.mbgarage.rpt.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.mbgarage.rpt.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
             cm.createCache(com.mbgarage.rpt.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.UserExt.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.UserExt.class.getName() + ".senderMessages", jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.UserExt.class.getName() + ".cars", jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Restoration.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Restoration.class.getName() + ".repairs", jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Repair.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Repair.class.getName() + ".subtasks", jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Repair.class.getName() + ".photos", jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.SubTask.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Photo.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Car.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Car.class.getName() + ".restorations", jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.Message.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

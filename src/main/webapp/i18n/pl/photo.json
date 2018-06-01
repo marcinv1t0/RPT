@@ -1,0 +1,25 @@
+
+{
+    "rptApp": {
+        "photo" : {
+            "home": {
+                "title": "Photos",
+                "createLabel": "Dodaj Photo",
+                "createOrEditLabel": "Dodaj lub edytuj: Photo"
+            },
+            "created": "Utworzono nowy Photo z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Photo z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Photo z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Photo {{ id }}?"
+            },
+            "detail": {
+                "title": "Photo"
+            },
+            "singlePhoto": "Single Photo",
+            "description": "Description",
+            "photoDate": "Photo Date",
+            "repair": "Repair"
+        }
+    }
+}

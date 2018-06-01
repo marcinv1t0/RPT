@@ -1,0 +1,40 @@
+
+<div *ngIf="restoration">
+    <h2><span jhiTranslate="rptApp.restoration.detail.title">Restoration</span> {{restoration.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="rptApp.restoration.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{restoration.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.restoration.finishDate">Finish Date</span></dt>
+        <dd>
+            <span>{{restoration.finishDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.restoration.cost">Cost</span></dt>
+        <dd>
+            <span>{{restoration.cost}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.restoration.car">Car</span></dt>
+        <dd>
+            <div *ngIf="restoration.carId">
+                <a [routerLink]="['/car-my-suffix', restoration.carId]">{{restoration.carId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'restoration-my-suffix/'+ restoration.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

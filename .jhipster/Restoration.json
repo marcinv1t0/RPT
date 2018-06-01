@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "repair",
+            "otherEntityName": "repair",
+            "otherEntityRelationshipName": "restoration"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "finishDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "cost",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20180601184647",
+    "entityTableName": "restoration",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

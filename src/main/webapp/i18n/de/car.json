@@ -1,0 +1,28 @@
+
+{
+    "rptApp": {
+        "car" : {
+            "home": {
+                "title": "Cars",
+                "createLabel": "Car erstellen",
+                "createOrEditLabel": "Car erstellen oder bearbeiten"
+            },
+            "created": "Car erstellt mit ID {{ param }}",
+            "updated": "Car aktualisiert mit ID {{ param }}",
+            "deleted": "Car gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Car {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Car"
+            },
+            "make": "Make",
+            "model": "Model",
+            "vin": "Vin",
+            "productionDate": "Production Date",
+            "color": "Color",
+            "restoration": "Restoration",
+            "owner": "Owner"
+        }
+    }
+}

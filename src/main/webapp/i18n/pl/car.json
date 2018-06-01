@@ -1,0 +1,28 @@
+
+{
+    "rptApp": {
+        "car" : {
+            "home": {
+                "title": "Cars",
+                "createLabel": "Dodaj Car",
+                "createOrEditLabel": "Dodaj lub edytuj: Car"
+            },
+            "created": "Utworzono nowy Car z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Car z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Car z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Car {{ id }}?"
+            },
+            "detail": {
+                "title": "Car"
+            },
+            "make": "Make",
+            "model": "Model",
+            "vin": "Vin",
+            "productionDate": "Production Date",
+            "color": "Color",
+            "restoration": "Restoration",
+            "owner": "Owner"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "rptApp": {
+        "AcountType" : {
+            "null": "",
+            "EMPLOYEE": "EMPLOYEE",
+            "MASTER": "MASTER",
+            "CUSTOMER": "CUSTOMER"
+        }
+    }
+}

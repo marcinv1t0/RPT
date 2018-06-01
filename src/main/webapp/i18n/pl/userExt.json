@@ -1,0 +1,26 @@
+
+{
+    "rptApp": {
+        "userExt" : {
+            "home": {
+                "title": "User Exts",
+                "createLabel": "Dodaj User Ext",
+                "createOrEditLabel": "Dodaj lub edytuj: User Ext"
+            },
+            "created": "Utworzono nowy User Ext z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono User Ext z identyfikatorem {{ param }}",
+            "deleted": "Usunięto User Ext z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć User Ext {{ id }}?"
+            },
+            "detail": {
+                "title": "User Ext"
+            },
+            "phoneNumber": "Phone Number",
+            "acountType": "Acount Type",
+            "user": "User",
+            "senderMessage": "Sender Message",
+            "car": "Car"
+        }
+    }
+}

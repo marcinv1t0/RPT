@@ -1,0 +1,45 @@
+
+<div *ngIf="photo">
+    <h2><span jhiTranslate="rptApp.photo.detail.title">Photo</span> {{photo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="rptApp.photo.singlePhoto">Single Photo</span></dt>
+        <dd>
+            <div *ngIf="photo.singlePhoto">
+                <a (click)="openFile(photo.singlePhotoContentType, photo.singlePhoto)">
+                    <img [src]="'data:' + photo.singlePhotoContentType + ';base64,' + photo.singlePhoto" style="max-width: 100%;" alt="photo image"/>
+                </a>
+                {{photo.singlePhotoContentType}}, {{byteSize(photo.singlePhoto)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="rptApp.photo.description">Description</span></dt>
+        <dd>
+            <span>{{photo.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.photo.photoDate">Photo Date</span></dt>
+        <dd>
+            <span>{{photo.photoDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.photo.repair">Repair</span></dt>
+        <dd>
+            <div *ngIf="photo.repairId">
+                <a [routerLink]="['/repair-my-suffix', photo.repairId]">{{photo.repairId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'photo-my-suffix/'+ photo.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

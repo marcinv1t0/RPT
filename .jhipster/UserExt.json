@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userExt"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "senderMessage",
+            "otherEntityName": "message",
+            "otherEntityRelationshipName": "sender"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "car",
+            "otherEntityName": "car",
+            "otherEntityRelationshipName": "owner"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 15
+        },
+        {
+            "fieldName": "acountType",
+            "fieldType": "AcountType",
+            "fieldValues": "EMPLOYEE,MASTER,CUSTOMER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20180601184646",
+    "entityTableName": "user_ext",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

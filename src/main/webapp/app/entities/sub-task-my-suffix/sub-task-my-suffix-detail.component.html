@@ -1,0 +1,36 @@
+
+<div *ngIf="subTask">
+    <h2><span jhiTranslate="rptApp.subTask.detail.title">Sub Task</span> {{subTask.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="rptApp.subTask.name">Name</span></dt>
+        <dd>
+            <span>{{subTask.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.subTask.description">Description</span></dt>
+        <dd>
+            <span>{{subTask.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.subTask.repair">Repair</span></dt>
+        <dd>
+            <div *ngIf="subTask.repairId">
+                <a [routerLink]="['/repair-my-suffix', subTask.repairId]">{{subTask.repairId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sub-task-my-suffix/'+ subTask.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

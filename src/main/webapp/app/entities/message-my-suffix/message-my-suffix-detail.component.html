@@ -1,0 +1,44 @@
+
+<div *ngIf="message">
+    <h2><span jhiTranslate="rptApp.message.detail.title">Message</span> {{message.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="rptApp.message.topic">Topic</span></dt>
+        <dd>
+            <span>{{message.topic}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.message.text">Text</span></dt>
+        <dd>
+            <span>{{message.text}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.message.read">Read</span></dt>
+        <dd>
+            <span>{{message.read}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.message.creationDate">Creation Date</span></dt>
+        <dd>
+            <span>{{message.creationDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.message.sender">Sender</span></dt>
+        <dd>
+            <div *ngIf="message.senderId">
+                <a [routerLink]="['/user-ext-my-suffix', message.senderId]">{{message.senderId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'message-my-suffix/'+ message.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
