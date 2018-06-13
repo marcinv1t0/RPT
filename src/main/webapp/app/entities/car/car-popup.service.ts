@@ -2,17 +2,17 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { CarMySuffix } from './car-my-suffix.model';
-import { CarMySuffixService } from './car-my-suffix.service';
+import { CarMySuffix } from './car.model';
+import { CarService } from './car.service';
 
 @Injectable()
-export class CarMySuffixPopupService {
+export class CarPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private carService: CarMySuffixService
+        private carService: CarService
 
     ) {
         this.ngbModalRef = null;

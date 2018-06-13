@@ -4,20 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CarMySuffix } from './car-my-suffix.model';
-import { CarMySuffixPopupService } from './car-my-suffix-popup.service';
-import { CarMySuffixService } from './car-my-suffix.service';
+import { CarMySuffix } from './car.model';
+import { CarPopupService } from './car-popup.service';
+import { CarService } from './car.service';
 
 @Component({
     selector: 'jhi-car-my-suffix-delete-dialog',
-    templateUrl: './car-my-suffix-delete-dialog.component.html'
+    templateUrl: './car-delete-dialog.component.html'
 })
-export class CarMySuffixDeleteDialogComponent {
+export class CarDeleteDialogComponent {
 
     car: CarMySuffix;
 
     constructor(
-        private carService: CarMySuffixService,
+        private carService: CarService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
     ) {
@@ -48,13 +48,13 @@ export class CarMySuffixDeletePopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private carPopupService: CarMySuffixPopupService
+        private carPopupService: CarPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.carPopupService
-                .open(CarMySuffixDeleteDialogComponent as Component, params['id']);
+                .open(CarDeleteDialogComponent as Component, params['id']);
         });
     }
 

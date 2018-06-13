@@ -3,14 +3,14 @@ import { RouterModule } from '@angular/router';
 
 import { RptSharedModule } from '../../shared';
 import {
-    CarMySuffixService,
-    CarMySuffixPopupService,
-    CarMySuffixComponent,
-    CarMySuffixDetailComponent,
-    CarMySuffixDialogComponent,
+    CarService,
+    CarPopupService,
+    CarComponent,
+    CarDetailComponent,
+    CarDialogComponent,
     CarMySuffixPopupComponent,
     CarMySuffixDeletePopupComponent,
-    CarMySuffixDeleteDialogComponent,
+    CarDeleteDialogComponent,
     carRoute,
     carPopupRoute,
 } from './';
@@ -26,23 +26,23 @@ const ENTITY_STATES = [
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
-        CarMySuffixComponent,
-        CarMySuffixDetailComponent,
-        CarMySuffixDialogComponent,
-        CarMySuffixDeleteDialogComponent,
+        CarComponent,
+        CarDetailComponent,
+        CarDialogComponent,
+        CarDeleteDialogComponent,
         CarMySuffixPopupComponent,
         CarMySuffixDeletePopupComponent,
     ],
     entryComponents: [
-        CarMySuffixComponent,
-        CarMySuffixDialogComponent,
+        CarComponent,
+        CarDialogComponent,
         CarMySuffixPopupComponent,
-        CarMySuffixDeleteDialogComponent,
+        CarDeleteDialogComponent,
         CarMySuffixDeletePopupComponent,
     ],
     providers: [
-        CarMySuffixService,
-        CarMySuffixPopupService,
+        CarService,
+        CarPopupService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

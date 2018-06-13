@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { CarMySuffixComponent } from './car-my-suffix.component';
-import { CarMySuffixDetailComponent } from './car-my-suffix-detail.component';
-import { CarMySuffixPopupComponent } from './car-my-suffix-dialog.component';
-import { CarMySuffixDeletePopupComponent } from './car-my-suffix-delete-dialog.component';
+import { CarComponent } from './car.component';
+import { CarDetailComponent } from './car-detail.component';
+import { CarMySuffixPopupComponent } from './car-dialog.component';
+import { CarMySuffixDeletePopupComponent } from './car-delete-dialog.component';
 
 export const carRoute: Routes = [
     {
         path: 'car-my-suffix',
-        component: CarMySuffixComponent,
+        component: CarComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.car.home.title'
@@ -17,7 +17,7 @@ export const carRoute: Routes = [
         canActivate: [UserRouteAccessService]
     }, {
         path: 'car-my-suffix/:id',
-        component: CarMySuffixDetailComponent,
+        component: CarDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.car.home.title'

@@ -6,16 +6,16 @@ import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { CarMySuffix } from './car-my-suffix.model';
-import { CarMySuffixPopupService } from './car-my-suffix-popup.service';
-import { CarMySuffixService } from './car-my-suffix.service';
+import { CarMySuffix } from './car.model';
+import { CarPopupService } from './car-popup.service';
+import { CarService } from './car.service';
 import { UserExtMySuffix, UserExtMySuffixService } from '../user-ext-my-suffix';
 
 @Component({
     selector: 'jhi-car-my-suffix-dialog',
-    templateUrl: './car-my-suffix-dialog.component.html'
+    templateUrl: './car-dialog.component.html'
 })
-export class CarMySuffixDialogComponent implements OnInit {
+export class CarDialogComponent implements OnInit {
 
     car: CarMySuffix;
     isSaving: boolean;
@@ -26,7 +26,7 @@ export class CarMySuffixDialogComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
-        private carService: CarMySuffixService,
+        private carService: CarService,
         private userExtService: UserExtMySuffixService,
         private eventManager: JhiEventManager
     ) {
@@ -87,17 +87,17 @@ export class CarMySuffixPopupComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private carPopupService: CarMySuffixPopupService
+        private carPopupService: CarPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.carPopupService
-                    .open(CarMySuffixDialogComponent as Component, params['id']);
+                    .open(CarDialogComponent as Component, params['id']);
             } else {
                 this.carPopupService
-                    .open(CarMySuffixDialogComponent as Component);
+                    .open(CarDialogComponent as Component);
             }
         });
     }

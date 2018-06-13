@@ -3,21 +3,21 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { CarMySuffix } from './car-my-suffix.model';
-import { CarMySuffixService } from './car-my-suffix.service';
+import { CarMySuffix } from './car.model';
+import { CarService } from './car.service';
 import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-car-my-suffix',
-    templateUrl: './car-my-suffix.component.html'
+    templateUrl: './car.component.html'
 })
-export class CarMySuffixComponent implements OnInit, OnDestroy {
+export class CarComponent implements OnInit, OnDestroy {
 cars: CarMySuffix[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
     constructor(
-        private carService: CarMySuffixService,
+        private carService: CarService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private principal: Principal

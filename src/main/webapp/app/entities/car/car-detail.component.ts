@@ -4,14 +4,14 @@ import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CarMySuffix } from './car-my-suffix.model';
-import { CarMySuffixService } from './car-my-suffix.service';
+import { CarMySuffix } from './car.model';
+import { CarService } from './car.service';
 
 @Component({
     selector: 'jhi-car-my-suffix-detail',
-    templateUrl: './car-my-suffix-detail.component.html'
+    templateUrl: './car-detail.component.html'
 })
-export class CarMySuffixDetailComponent implements OnInit, OnDestroy {
+export class CarDetailComponent implements OnInit, OnDestroy {
 
     car: CarMySuffix;
     private subscription: Subscription;
@@ -19,7 +19,7 @@ export class CarMySuffixDetailComponent implements OnInit, OnDestroy {
 
     constructor(
         private eventManager: JhiEventManager,
-        private carService: CarMySuffixService,
+        private carService: CarService,
         private route: ActivatedRoute
     ) {
     }

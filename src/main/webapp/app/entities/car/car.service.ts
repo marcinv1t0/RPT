@@ -5,13 +5,13 @@ import { SERVER_API_URL } from '../../app.constants';
 
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { CarMySuffix } from './car-my-suffix.model';
+import { CarMySuffix } from './car.model';
 import { createRequestOption } from '../../shared';
 
 export type EntityResponseType = HttpResponse<CarMySuffix>;
 
 @Injectable()
-export class CarMySuffixService {
+export class CarService {
 
     private resourceUrl =  SERVER_API_URL + 'api/cars';
 
