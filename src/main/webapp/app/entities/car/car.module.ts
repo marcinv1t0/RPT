@@ -8,8 +8,8 @@ import {
     CarComponent,
     CarDetailComponent,
     CarDialogComponent,
-    CarMySuffixPopupComponent,
-    CarMySuffixDeletePopupComponent,
+    CarPopupComponent,
+    CarDeletePopupComponent,
     CarDeleteDialogComponent,
     carRoute,
     carPopupRoute,
@@ -30,15 +30,15 @@ const ENTITY_STATES = [
         CarDetailComponent,
         CarDialogComponent,
         CarDeleteDialogComponent,
-        CarMySuffixPopupComponent,
-        CarMySuffixDeletePopupComponent,
+        CarPopupComponent,
+        CarDeletePopupComponent,
     ],
     entryComponents: [
         CarComponent,
         CarDialogComponent,
-        CarMySuffixPopupComponent,
+        CarPopupComponent,
         CarDeleteDialogComponent,
-        CarMySuffixDeletePopupComponent,
+        CarDeletePopupComponent,
     ],
     providers: [
         CarService,
@@ -46,4 +46,4 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class RptCarMySuffixModule {}
+export class RptCarModule {}

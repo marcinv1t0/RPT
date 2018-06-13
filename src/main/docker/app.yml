@@ -4,7 +4,7 @@ services:
         image: rpt
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/rpt
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://rpt-postgresql:5432/rpt
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
             - 8080:8080

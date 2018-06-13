@@ -2,13 +2,20 @@ package com.mbgarage.rpt.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mbgarage.rpt.service.CarService;
+import com.mbgarage.rpt.service.UserExtService;
+import com.mbgarage.rpt.service.UserService;
+import com.mbgarage.rpt.service.dto.UserDTO;
+import com.mbgarage.rpt.service.dto.UserExtDTO;
 import com.mbgarage.rpt.web.rest.errors.BadRequestAlertException;
+import com.mbgarage.rpt.web.rest.errors.InternalServerErrorException;
 import com.mbgarage.rpt.web.rest.util.HeaderUtil;
 import com.mbgarage.rpt.service.dto.CarDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,8 +38,14 @@ public class CarResource {
 
     private final CarService carService;
 
-    public CarResource(CarService carService) {
+    private final UserExtService userExtService;
+
+    private final UserService userService;
+
+    public CarResource(CarService carService, UserExtService userExtService, UserService userService) {
         this.carService = carService;
+        this.userExtService = userExtService;
+        this.userService = userService;
     }
 
     /**
@@ -49,6 +62,16 @@ public class CarResource {
         if (carDTO.getId() != null) {
             throw new BadRequestAlertException("A new car cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+
+        log.debug("REST request to get User : {}", login);
+        UserDTO userDTO = userService.getUserWithAuthorities()
+            .map(UserDTO::new)
+            .orElseThrow(() -> new InternalServerErrorException("User could not be found"));
+
+        UserExtDTO userExtDTO = userExtService.findOne(userDTO.getId());
+        carDTO.setOwnerId(userExtDTO.getUserId());
         CarDTO result = carService.save(carDTO);
         return ResponseEntity.created(new URI("/api/cars/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

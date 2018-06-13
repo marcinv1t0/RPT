@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="repair"/>
 
+        <addForeignKeyConstraint baseColumnNames="query_id"
+                                 baseTableName="photo"
+                                 constraintName="fk_photo_query_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="restoration_query"/>
+
     </changeSet>
 </databaseChangeLog>

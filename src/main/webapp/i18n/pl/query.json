@@ -1,0 +1,25 @@
+
+{
+    "rptApp": {
+        "query" : {
+            "home": {
+                "title": "Cars",
+                "createLabel": "Utwóz nowe zapytanie"
+            },
+            "created": "Utworzono nowy Car z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Car z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Car z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Car {{ id }}?"
+            },
+            "make": "Marka",
+            "model": "Model",
+            "vin": "Numer VIN",
+            "productionDate": "Data produkcji",
+            "color": "Color",
+            "restoration": "Restoration",
+            "owner": "Owner",
+            "description": "Opis"
+        }
+    }
+}

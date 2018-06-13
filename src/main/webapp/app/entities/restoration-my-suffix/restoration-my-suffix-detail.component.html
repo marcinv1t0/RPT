@@ -19,7 +19,7 @@
         <dt><span jhiTranslate="rptApp.restoration.car">Car</span></dt>
         <dd>
             <div *ngIf="restoration.carId">
-                <a [routerLink]="['/car-my-suffix', restoration.carId]">{{restoration.carId}}</a>
+                <a [routerLink]="['/car', restoration.carId]">{{restoration.carId}}</a>
             </div>
         </dd>
     </dl>

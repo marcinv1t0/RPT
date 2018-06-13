@@ -1,15 +1,23 @@
 <div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
+    <div class="col-md-8">
+        <span class="poster img-fluid rounded"></span>
     </div>
-    <div class="col-md-9">
-        <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
+    <div class="col-md-4">
+        <h1 class="display-4" jhiTranslate="home.title">Welcome on the MB-GARAGE webpage!</h1>
         <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
+        <hr>
 
+        
         <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span *ngIf="account" jhiTranslate="home.logged.message"
-                    translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
+                <div *ngSwitchCase="true">
+                        <p>
+                                <span *ngIf="account" jhiTranslate="home.logged.description"> xdddddd </span>
+                            </p>
+                </div>
+            <div *ngSwitchCase="true">
+                <p>
+                    <span *ngIf="account" jhiTranslate="home.logged.message"> xdddddd </span>
+                </p>
             </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">
@@ -21,10 +29,6 @@
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
         </div>
-
-        <p jhiTranslate="home.question">
-            If you have any question on JHipster:
-        </p>
 
         <ul>
             <li><a href="http://www.jhipster.tech/" target="_blank" rel="noopener" jhiTranslate="home.link.homepage">JHipster homepage</a></li>

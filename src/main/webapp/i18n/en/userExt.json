@@ -20,7 +20,8 @@
             "acountType": "Acount Type",
             "user": "User",
             "senderMessage": "Sender Message",
-            "car": "Car"
+            "car": "Car",
+            "query": "Query"
         }
     }
 }

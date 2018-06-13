@@ -3,14 +3,14 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { CarMySuffixService } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix.service';
+import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
 import { SERVER_API_URL } from '../../../../../../main/webapp/app/app.constants';
 
 describe('Service Tests', () => {
 
-    describe('CarMySuffix Service', () => {
+    describe('Car Service', () => {
         let injector: TestBed;
-        let service: CarMySuffixService;
+        let service: CarService;
         let httpMock: HttpTestingController;
 
         beforeEach(() => {
@@ -20,11 +20,11 @@ describe('Service Tests', () => {
                 ],
                 providers: [
                     JhiDateUtils,
-                    CarMySuffixService
+                    CarService
                 ]
             });
             injector = getTestBed();
-            service = injector.get(CarMySuffixService);
+            service = injector.get(CarService);
             httpMock = injector.get(HttpTestingController);
         });
 
@@ -37,7 +37,7 @@ describe('Service Tests', () => {
                 const resourceUrl = SERVER_API_URL + 'api/cars';
                 expect(req.request.url).toEqual(resourceUrl + '/' + 123);
             });
-            it('should return CarMySuffix', () => {
+            it('should return Car', () => {
 
                 service.find(123).subscribe((received) => {
                     expect(received.body.id).toEqual(123);

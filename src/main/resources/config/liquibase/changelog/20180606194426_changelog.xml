@@ -1,0 +1,146 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="m1per (generated)" id="1528314273310-1">
+        <createTable tableName="car">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="carPK"/>
+            </column>
+            <column name="color" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="make" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="production_date" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vin" type="VARCHAR(255)"/>
+            <column name="owner_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-2">
+        <createTable tableName="message">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="messagePK"/>
+            </column>
+            <column name="creation_date" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jhi_read" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="topic" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sender_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-3">
+        <createTable tableName="photo">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="photoPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="photo_date" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column name="single_photo" type="OID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="single_photo_content_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repair_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-4">
+        <createTable tableName="repair">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="repairPK"/>
+            </column>
+            <column name="jhi_cost" type="BIGINT"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="finish_date" type="BYTEA"/>
+            <column name="name" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restoration_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-5">
+        <createTable tableName="restoration">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="restorationPK"/>
+            </column>
+            <column name="jhi_cost" type="BIGINT"/>
+            <column name="finish_date" type="BYTEA"/>
+            <column name="start_date" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column name="car_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-6">
+        <createTable tableName="sub_task">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="sub_taskPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repair_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-7">
+        <createTable tableName="user_ext">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="user_extPK"/>
+            </column>
+            <column name="acount_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(15)"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-8">
+        <addUniqueConstraint columnNames="user_id" constraintName="UC_USER_EXTUSER_ID_COL" tableName="user_ext"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-9">
+        <addForeignKeyConstraint baseColumnNames="repair_id" baseTableName="photo" constraintName="FK273u1vx6x03sa5vvdpsdlrcsn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="repair"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-10">
+        <addForeignKeyConstraint baseColumnNames="repair_id" baseTableName="sub_task" constraintName="FKa1f49notvdvyvsjd82lrqy86i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="repair"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-11">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="car" constraintName="FKapw351m0e0fpuqf2sf0ys4qrr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_ext"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-12">
+        <addForeignKeyConstraint baseColumnNames="car_id" baseTableName="restoration" constraintName="FKq81yrcaj0oi1oxqj452j2nskj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="car"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-13">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_ext" constraintName="FKqv3bqsynxmpflfdnvwsuclxle" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-14">
+        <addForeignKeyConstraint baseColumnNames="restoration_id" baseTableName="repair" constraintName="FKr6fjly7i1qu18yf0gii58qx2t" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="restoration"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-15">
+        <addForeignKeyConstraint baseColumnNames="sender_id" baseTableName="message" constraintName="FKshyh43rl8y2yldx39vwypvci9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user_ext"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-16">
+        <dropUniqueConstraint constraintName="jhi_social_user_connection_user_id_provider_id_provider_use_key" tableName="jhi_social_user_connection"/>
+    </changeSet>
+    <changeSet author="m1per (generated)" id="1528314273310-17">
+        <dropUniqueConstraint constraintName="jhi_social_user_connection_user_id_provider_id_rank_key" tableName="jhi_social_user_connection"/>
+    </changeSet>
+</databaseChangeLog>

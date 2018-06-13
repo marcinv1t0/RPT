@@ -1,0 +1,48 @@
+
+<div *ngIf="restorationQuery">
+    <h2><span jhiTranslate="rptApp.restorationQuery.detail.title">Restoration Query</span> {{restorationQuery.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="rptApp.restorationQuery.make">Make</span></dt>
+        <dd>
+            <span>{{restorationQuery.make}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.restorationQuery.model">Model</span></dt>
+        <dd>
+            <span>{{restorationQuery.model}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.restorationQuery.vin">Vin</span></dt>
+        <dd>
+            <span>{{restorationQuery.vin}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.restorationQuery.productionDate">Production Date</span></dt>
+        <dd>
+            <span>{{restorationQuery.productionDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.restorationQuery.description">Description</span></dt>
+        <dd>
+            <span>{{restorationQuery.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="rptApp.restorationQuery.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="restorationQuery.customerId">
+                <a [routerLink]="['/user-ext', restorationQuery.customerId]">{{restorationQuery.customerId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'restoration-query/'+ restorationQuery.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

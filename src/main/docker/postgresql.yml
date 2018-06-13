@@ -5,7 +5,7 @@ services:
         # volumes:
         #     - ~/volumes/jhipster/rpt/postgresql/:/var/lib/postgresql/data/
         environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=system
+            - POSTGRES_USER=rpt
+            - POSTGRES_PASSWORD=
         ports:
             - 5432:5432

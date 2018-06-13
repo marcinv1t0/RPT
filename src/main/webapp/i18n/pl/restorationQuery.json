@@ -1,0 +1,28 @@
+
+{
+    "rptApp": {
+        "restorationQuery" : {
+            "home": {
+                "title": "Restoration Queries",
+                "createLabel": "Dodaj Restoration Query",
+                "createOrEditLabel": "Dodaj lub edytuj: Restoration Query"
+            },
+            "created": "Utworzono nowy Restoration Query z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Restoration Query z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Restoration Query z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Restoration Query {{ id }}?"
+            },
+            "detail": {
+                "title": "Restoration Query"
+            },
+            "make": "Make",
+            "model": "Model",
+            "vin": "Vin",
+            "productionDate": "Production Date",
+            "description": "Description",
+            "photo": "Photo",
+            "customer": "Customer"
+        }
+    }
+}

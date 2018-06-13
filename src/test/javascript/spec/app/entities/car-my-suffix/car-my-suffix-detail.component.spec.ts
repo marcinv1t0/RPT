@@ -4,33 +4,33 @@ import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { RptTestModule } from '../../../test.module';
-import { CarMySuffixDetailComponent } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix-detail.component';
-import { CarMySuffixService } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix.service';
-import { CarMySuffix } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix.model';
+import { CarDetailComponent } from '../../../../../../main/webapp/app/entities/car/car-detail.component';
+import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
+import { Car } from '../../../../../../main/webapp/app/entities/car/car.model';
 
 describe('Component Tests', () => {
 
-    describe('CarMySuffix Management Detail Component', () => {
-        let comp: CarMySuffixDetailComponent;
-        let fixture: ComponentFixture<CarMySuffixDetailComponent>;
-        let service: CarMySuffixService;
+    describe('Car Management Detail Component', () => {
+        let comp: CarDetailComponent;
+        let fixture: ComponentFixture<CarDetailComponent>;
+        let service: CarService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [CarMySuffixDetailComponent],
+                declarations: [CarDetailComponent],
                 providers: [
-                    CarMySuffixService
+                    CarService
                 ]
             })
-            .overrideTemplate(CarMySuffixDetailComponent, '')
+            .overrideTemplate(CarDetailComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(CarMySuffixDetailComponent);
+            fixture = TestBed.createComponent(CarDetailComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(CarMySuffixService);
+            service = fixture.debugElement.injector.get(CarService);
         });
 
         describe('OnInit', () => {
@@ -38,7 +38,7 @@ describe('Component Tests', () => {
                 // GIVEN
 
                 spyOn(service, 'find').and.returnValue(Observable.of(new HttpResponse({
-                    body: new CarMySuffix(123)
+                    body: new Car(123)
                 })));
 
                 // WHEN

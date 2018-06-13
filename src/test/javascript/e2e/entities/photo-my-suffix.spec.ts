@@ -6,7 +6,7 @@ describe('Photo e2e test', () => {
     let navBarPage: NavBarPage;
     let photoDialogPage: PhotoDialogPage;
     let photoComponentsPage: PhotoComponentsPage;
-    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
+    const fileToUpload = '../../../../main/webapp/content/images/logo-mbgarage.png';
     const absolutePath = path.resolve(__dirname, fileToUpload);
 
     beforeAll(() => {
@@ -18,7 +18,7 @@ describe('Photo e2e test', () => {
     });
 
     it('should load Photos', () => {
-        navBarPage.goToEntity('photo-my-suffix');
+        navBarPage.goToEntity('photo');
         photoComponentsPage = new PhotoComponentsPage();
         expect(photoComponentsPage.getTitle())
             .toMatch(/rptApp.photo.home.title/);
@@ -52,7 +52,7 @@ describe('Photo e2e test', () => {
 
 export class PhotoComponentsPage {
     createButton = element(by.css('.jh-create-entity'));
-    title = element.all(by.css('jhi-photo-my-suffix div h2 span')).first();
+    title = element.all(by.css('jhi-photo div h2 span')).first();
 
     clickOnCreateButton() {
         return this.createButton.click();

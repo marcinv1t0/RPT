@@ -4,16 +4,16 @@ import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CarMySuffix } from './car.model';
+import { Car } from './car.model';
 import { CarService } from './car.service';
 
 @Component({
-    selector: 'jhi-car-my-suffix-detail',
+    selector: 'jhi-car-detail',
     templateUrl: './car-detail.component.html'
 })
 export class CarDetailComponent implements OnInit, OnDestroy {
 
-    car: CarMySuffix;
+    car: Car;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
@@ -33,7 +33,7 @@ export class CarDetailComponent implements OnInit, OnDestroy {
 
     load(id) {
         this.carService.find(id)
-            .subscribe((carResponse: HttpResponse<CarMySuffix>) => {
+            .subscribe((carResponse: HttpResponse<Car>) => {
                 this.car = carResponse.body;
             });
     }

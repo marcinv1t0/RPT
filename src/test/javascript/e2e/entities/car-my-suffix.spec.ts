@@ -16,7 +16,7 @@ describe('Car e2e test', () => {
     });
 
     it('should load Cars', () => {
-        navBarPage.goToEntity('car-my-suffix');
+        navBarPage.goToEntity('car');
         carComponentsPage = new CarComponentsPage();
         expect(carComponentsPage.getTitle())
             .toMatch(/rptApp.car.home.title/);
@@ -55,7 +55,7 @@ describe('Car e2e test', () => {
 
 export class CarComponentsPage {
     createButton = element(by.css('.jh-create-entity'));
-    title = element.all(by.css('jhi-car-my-suffix div h2 span')).first();
+    title = element.all(by.css('jhi-car div h2 span')).first();
 
     clickOnCreateButton() {
         return this.createButton.click();

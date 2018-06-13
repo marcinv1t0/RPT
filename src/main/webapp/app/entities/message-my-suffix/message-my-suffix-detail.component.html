@@ -23,7 +23,7 @@
         <dt><span jhiTranslate="rptApp.message.sender">Sender</span></dt>
         <dd>
             <div *ngIf="message.senderId">
-                <a [routerLink]="['/user-ext-my-suffix', message.senderId]">{{message.senderId}}</a>
+                <a [routerLink]="['/user-ext', message.senderId]">{{message.senderId}}</a>
             </div>
         </dd>
     </dl>

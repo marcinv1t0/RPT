@@ -2,7 +2,7 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { CarMySuffix } from './car.model';
+import { Car } from './car.model';
 import { CarService } from './car.service';
 
 @Injectable()
@@ -27,8 +27,8 @@ export class CarPopupService {
 
             if (id) {
                 this.carService.find(id)
-                    .subscribe((carResponse: HttpResponse<CarMySuffix>) => {
-                        const car: CarMySuffix = carResponse.body;
+                    .subscribe((carResponse: HttpResponse<Car>) => {
+                        const car: Car = carResponse.body;
                         if (car.productionDate) {
                             car.productionDate = {
                                 year: car.productionDate.getFullYear(),
@@ -42,14 +42,14 @@ export class CarPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.carModalRef(component, new CarMySuffix());
+                    this.ngbModalRef = this.carModalRef(component, new Car());
                     resolve(this.ngbModalRef);
                 }, 0);
             }
         });
     }
 
-    carModalRef(component: Component, car: CarMySuffix): NgbModalRef {
+    carModalRef(component: Component, car: Car): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.car = car;
         modalRef.result.then((result) => {

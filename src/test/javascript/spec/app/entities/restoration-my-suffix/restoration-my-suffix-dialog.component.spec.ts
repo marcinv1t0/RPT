@@ -9,7 +9,7 @@ import { RptTestModule } from '../../../test.module';
 import { RestorationMySuffixDialogComponent } from '../../../../../../main/webapp/app/entities/restoration-my-suffix/restoration-my-suffix-dialog.component';
 import { RestorationMySuffixService } from '../../../../../../main/webapp/app/entities/restoration-my-suffix/restoration-my-suffix.service';
 import { RestorationMySuffix } from '../../../../../../main/webapp/app/entities/restoration-my-suffix/restoration-my-suffix.model';
-import { CarMySuffixService } from '../../../../../../main/webapp/app/entities/car-my-suffix';
+import { CarService } from '../../../../../../main/webapp/app/entities/car';
 
 describe('Component Tests', () => {
 
@@ -25,7 +25,7 @@ describe('Component Tests', () => {
                 imports: [RptTestModule],
                 declarations: [RestorationMySuffixDialogComponent],
                 providers: [
-                    CarMySuffixService,
+                    CarService,
                     RestorationMySuffixService
                 ]
             })

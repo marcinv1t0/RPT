@@ -17,6 +17,10 @@ import { RptAccountModule } from './account/account.module';
 import { RptEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 import { StateStorageService } from './shared/auth/state-storage.service';
+import {RptQueryModule} from './query/query.module';
+import {QueryService} from './query';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -38,6 +42,7 @@ import {
         RptAdminModule,
         RptAccountModule,
         RptEntityModule,
+        RptQueryModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -51,6 +56,8 @@ import {
     providers: [
         ProfileService,
         PaginationConfig,
+        QueryService,
+        NgbActiveModal,
         UserRouteAccessService,
         {
             provide: HTTP_INTERCEPTORS,

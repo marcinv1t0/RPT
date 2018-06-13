@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="rptApp.car.home.title">Cars</span>
-        <button class="btn btn-primary float-right jh-create-entity create-car-my-suffix" [routerLink]="['/', { outlets: { popup: ['car-my-suffix-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-car" [routerLink]="['/', { outlets: { popup: ['car-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="rptApp.car.home.createLabel">
             Create new Car
@@ -28,7 +28,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let car of cars ;trackBy: trackId">
-                <td><a [routerLink]="['../car-my-suffix', car.id ]">{{car.id}}</a></td>
+                <td><a [routerLink]="['../car', car.id ]">{{car.id}}</a></td>
                 <td>{{car.make}}</td>
                 <td>{{car.model}}</td>
                 <td>{{car.vin}}</td>
@@ -42,13 +42,13 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../car-my-suffix', car.id ]"
+                                [routerLink]="['../car', car.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'car-my-suffix/'+ car.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'car/'+ car.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -56,7 +56,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'car-my-suffix/'+ car.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'car/'+ car.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

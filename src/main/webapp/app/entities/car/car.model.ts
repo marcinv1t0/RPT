@@ -1,6 +1,6 @@
 import { BaseEntity } from './../../shared';
 
-export class CarMySuffix implements BaseEntity {
+export class Car implements BaseEntity {
     constructor(
         public id?: number,
         public make?: string,

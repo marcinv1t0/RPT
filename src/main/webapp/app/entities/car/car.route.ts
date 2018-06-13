@@ -3,12 +3,12 @@ import { Routes } from '@angular/router';
 import { UserRouteAccessService } from '../../shared';
 import { CarComponent } from './car.component';
 import { CarDetailComponent } from './car-detail.component';
-import { CarMySuffixPopupComponent } from './car-dialog.component';
-import { CarMySuffixDeletePopupComponent } from './car-delete-dialog.component';
+import { CarPopupComponent } from './car-dialog.component';
+import { CarDeletePopupComponent } from './car-delete-dialog.component';
 
 export const carRoute: Routes = [
     {
-        path: 'car-my-suffix',
+        path: 'car',
         component: CarComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -16,7 +16,7 @@ export const carRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'car-my-suffix/:id',
+        path: 'car/:id',
         component: CarDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -28,8 +28,8 @@ export const carRoute: Routes = [
 
 export const carPopupRoute: Routes = [
     {
-        path: 'car-my-suffix-new',
-        component: CarMySuffixPopupComponent,
+        path: 'car-new',
+        component: CarPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.car.home.title'
@@ -38,8 +38,8 @@ export const carPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'car-my-suffix/:id/edit',
-        component: CarMySuffixPopupComponent,
+        path: 'car/:id/edit',
+        component: CarPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.car.home.title'
@@ -48,8 +48,8 @@ export const carPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'car-my-suffix/:id/delete',
-        component: CarMySuffixDeletePopupComponent,
+        path: 'car/:id/delete',
+        component: CarDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.car.home.title'

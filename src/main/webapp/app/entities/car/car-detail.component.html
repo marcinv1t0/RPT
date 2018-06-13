@@ -27,7 +27,7 @@
         <dt><span jhiTranslate="rptApp.car.owner">Owner</span></dt>
         <dd>
             <div *ngIf="car.ownerId">
-                <a [routerLink]="['/user-ext-my-suffix', car.ownerId]">{{car.ownerId}}</a>
+                <a [routerLink]="['/user-ext', car.ownerId]">{{car.ownerId}}</a>
             </div>
         </dd>
     </dl>
@@ -39,7 +39,7 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'car-my-suffix/'+ car.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'car/'+ car.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">

@@ -14,6 +14,9 @@
                 "photoMySuffix": "Photo",
                 "carMySuffix": "Car",
                 "messageMySuffix": "Message",
+                "userExt": "User Ext",
+                "photo": "Photo",
+                "restorationQuery": "Restoration Query",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

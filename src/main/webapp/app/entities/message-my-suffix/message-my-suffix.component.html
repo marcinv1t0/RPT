@@ -34,7 +34,7 @@
                 <td>{{message.creationDate | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="message.senderId">
-                        <a [routerLink]="['../user-ext-my-suffix', message.senderId  ]" >{{message.senderId}}</a>
+                        <a [routerLink]="['../user-ext', message.senderId  ]" >{{message.senderId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

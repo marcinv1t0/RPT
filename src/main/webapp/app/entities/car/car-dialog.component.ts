@@ -6,28 +6,28 @@ import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { CarMySuffix } from './car.model';
+import { Car } from './car.model';
 import { CarPopupService } from './car-popup.service';
 import { CarService } from './car.service';
-import { UserExtMySuffix, UserExtMySuffixService } from '../user-ext-my-suffix';
+import { UserExt, UserExtService } from '../user-ext';
 
 @Component({
-    selector: 'jhi-car-my-suffix-dialog',
+    selector: 'jhi-car-dialog',
     templateUrl: './car-dialog.component.html'
 })
 export class CarDialogComponent implements OnInit {
 
-    car: CarMySuffix;
+    car: Car;
     isSaving: boolean;
 
-    userexts: UserExtMySuffix[];
+    userexts: UserExt[];
     productionDateDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private carService: CarService,
-        private userExtService: UserExtMySuffixService,
+        private userExtService: UserExtService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -35,7 +35,7 @@ export class CarDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.userExtService.query()
-            .subscribe((res: HttpResponse<UserExtMySuffix[]>) => { this.userexts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<UserExt[]>) => { this.userexts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -53,12 +53,12 @@ export class CarDialogComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<CarMySuffix>>) {
-        result.subscribe((res: HttpResponse<CarMySuffix>) =>
+    private subscribeToSaveResponse(result: Observable<HttpResponse<Car>>) {
+        result.subscribe((res: HttpResponse<Car>) =>
             this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: CarMySuffix) {
+    private onSaveSuccess(result: Car) {
         this.eventManager.broadcast({ name: 'carListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -72,16 +72,16 @@ export class CarDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackUserExtById(index: number, item: UserExtMySuffix) {
+    trackUserExtById(index: number, item: UserExt) {
         return item.id;
     }
 }
 
 @Component({
-    selector: 'jhi-car-my-suffix-popup',
+    selector: 'jhi-car-popup',
     template: ''
 })
-export class CarMySuffixPopupComponent implements OnInit, OnDestroy {
+export class CarPopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 

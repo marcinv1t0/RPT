@@ -6,37 +6,37 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { CarMySuffixDialogComponent } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix-dialog.component';
-import { CarMySuffixService } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix.service';
-import { CarMySuffix } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix.model';
-import { UserExtMySuffixService } from '../../../../../../main/webapp/app/entities/user-ext-my-suffix';
+import { CarDialogComponent } from '../../../../../../main/webapp/app/entities/car/car-dialog.component';
+import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
+import { Car } from '../../../../../../main/webapp/app/entities/car/car.model';
+import { UserExtService } from '../../../../../../main/webapp/app/entities/user-ext';
 
 describe('Component Tests', () => {
 
-    describe('CarMySuffix Management Dialog Component', () => {
-        let comp: CarMySuffixDialogComponent;
-        let fixture: ComponentFixture<CarMySuffixDialogComponent>;
-        let service: CarMySuffixService;
+    describe('Car Management Dialog Component', () => {
+        let comp: CarDialogComponent;
+        let fixture: ComponentFixture<CarDialogComponent>;
+        let service: CarService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [CarMySuffixDialogComponent],
+                declarations: [CarDialogComponent],
                 providers: [
-                    UserExtMySuffixService,
-                    CarMySuffixService
+                    UserExtService,
+                    CarService
                 ]
             })
-            .overrideTemplate(CarMySuffixDialogComponent, '')
+            .overrideTemplate(CarDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(CarMySuffixDialogComponent);
+            fixture = TestBed.createComponent(CarDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(CarMySuffixService);
+            service = fixture.debugElement.injector.get(CarService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });
@@ -46,7 +46,7 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new CarMySuffix(123);
+                        const entity = new Car(123);
                         spyOn(service, 'update').and.returnValue(Observable.of(new HttpResponse({body: entity})));
                         comp.car = entity;
                         // WHEN
@@ -66,7 +66,7 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new CarMySuffix();
+                        const entity = new Car();
                         spyOn(service, 'create').and.returnValue(Observable.of(new HttpResponse({body: entity})));
                         comp.car = entity;
                         // WHEN

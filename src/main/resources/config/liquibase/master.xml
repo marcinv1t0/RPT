@@ -12,6 +12,7 @@
     <include file="config/liquibase/changelog/20180601184650_added_entity_Photo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180601184651_added_entity_Car.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180601184652_added_entity_Message.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180613115933_added_entity_RestorationQuery.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180601184646_added_entity_constraints_UserExt.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180601184647_added_entity_constraints_Restoration.xml" relativeToChangelogFile="false"/>
@@ -20,5 +21,7 @@
     <include file="config/liquibase/changelog/20180601184650_added_entity_constraints_Photo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180601184651_added_entity_constraints_Car.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180601184652_added_entity_constraints_Message.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180613115933_added_entity_constraints_RestorationQuery.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180613163635_changelog.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

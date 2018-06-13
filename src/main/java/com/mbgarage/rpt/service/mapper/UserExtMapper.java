@@ -17,6 +17,7 @@ public interface UserExtMapper extends EntityMapper<UserExtDTO, UserExt> {
     @Mapping(source = "userId", target = "user")
     @Mapping(target = "senderMessages", ignore = true)
     @Mapping(target = "cars", ignore = true)
+    @Mapping(target = "queries", ignore = true)
     UserExt toEntity(UserExtDTO userExtDTO);
 
     default UserExt fromId(Long id) {

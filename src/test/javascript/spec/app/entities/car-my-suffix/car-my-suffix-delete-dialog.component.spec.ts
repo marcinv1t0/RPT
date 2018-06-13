@@ -5,34 +5,34 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { CarMySuffixDeleteDialogComponent } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix-delete-dialog.component';
-import { CarMySuffixService } from '../../../../../../main/webapp/app/entities/car-my-suffix/car-my-suffix.service';
+import { CarDeleteDialogComponent } from '../../../../../../main/webapp/app/entities/car/car-delete-dialog.component';
+import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
 
 describe('Component Tests', () => {
 
-    describe('CarMySuffix Management Delete Component', () => {
-        let comp: CarMySuffixDeleteDialogComponent;
-        let fixture: ComponentFixture<CarMySuffixDeleteDialogComponent>;
-        let service: CarMySuffixService;
+    describe('Car Management Delete Component', () => {
+        let comp: CarDeleteDialogComponent;
+        let fixture: ComponentFixture<CarDeleteDialogComponent>;
+        let service: CarService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [CarMySuffixDeleteDialogComponent],
+                declarations: [CarDeleteDialogComponent],
                 providers: [
-                    CarMySuffixService
+                    CarService
                 ]
             })
-            .overrideTemplate(CarMySuffixDeleteDialogComponent, '')
+            .overrideTemplate(CarDeleteDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(CarMySuffixDeleteDialogComponent);
+            fixture = TestBed.createComponent(CarDeleteDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(CarMySuffixService);
+            service = fixture.debugElement.injector.get(CarService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });

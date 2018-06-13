@@ -6,6 +6,12 @@
             "relationshipName": "repair",
             "otherEntityName": "repair",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "query",
+            "otherEntityName": "restorationQuery",
+            "otherEntityField": "id"
         }
     ],
     "fields": [
@@ -34,6 +40,5 @@
     "dto": "mapstruct",
     "pagination": "no",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "angularJSSuffix": "mySuffix"
+    "jpaMetamodelFiltering": false
 }

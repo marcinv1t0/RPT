@@ -3,16 +3,16 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { CarMySuffix } from './car.model';
+import { Car } from './car.model';
 import { CarService } from './car.service';
 import { Principal } from '../../shared';
 
 @Component({
-    selector: 'jhi-car-my-suffix',
+    selector: 'jhi-car',
     templateUrl: './car.component.html'
 })
 export class CarComponent implements OnInit, OnDestroy {
-cars: CarMySuffix[];
+cars: Car[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
@@ -26,7 +26,7 @@ cars: CarMySuffix[];
 
     loadAll() {
         this.carService.query().subscribe(
-            (res: HttpResponse<CarMySuffix[]>) => {
+            (res: HttpResponse<Car[]>) => {
                 this.cars = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -44,7 +44,7 @@ cars: CarMySuffix[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: CarMySuffix) {
+    trackId(index: number, item: Car) {
         return item.id;
     }
     registerChangeInCars() {

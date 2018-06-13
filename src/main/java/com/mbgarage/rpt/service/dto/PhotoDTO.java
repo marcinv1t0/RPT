@@ -28,6 +28,8 @@ public class PhotoDTO implements Serializable {
 
     private Long repairId;
 
+    private Long queryId;
+
     public Long getId() {
         return id;
     }
@@ -74,6 +76,14 @@ public class PhotoDTO implements Serializable {
 
     public void setRepairId(Long repairId) {
         this.repairId = repairId;
+    }
+
+    public Long getQueryId() {
+        return queryId;
+    }
+
+    public void setQueryId(Long restorationQueryId) {
+        this.queryId = restorationQueryId;
     }
 
     @Override

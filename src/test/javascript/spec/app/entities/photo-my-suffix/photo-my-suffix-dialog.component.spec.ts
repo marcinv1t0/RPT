@@ -6,37 +6,37 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { PhotoMySuffixDialogComponent } from '../../../../../../main/webapp/app/entities/photo-my-suffix/photo-my-suffix-dialog.component';
-import { PhotoMySuffixService } from '../../../../../../main/webapp/app/entities/photo-my-suffix/photo-my-suffix.service';
-import { PhotoMySuffix } from '../../../../../../main/webapp/app/entities/photo-my-suffix/photo-my-suffix.model';
+import { PhotoDialogComponent } from '../../../../../../main/webapp/app/entities/photo/photo-dialog.component';
+import { PhotoService } from '../../../../../../main/webapp/app/entities/photo/photo.service';
+import { Photo } from '../../../../../../main/webapp/app/entities/photo/photo.model';
 import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix';
 
 describe('Component Tests', () => {
 
-    describe('PhotoMySuffix Management Dialog Component', () => {
-        let comp: PhotoMySuffixDialogComponent;
-        let fixture: ComponentFixture<PhotoMySuffixDialogComponent>;
-        let service: PhotoMySuffixService;
+    describe('Photo Management Dialog Component', () => {
+        let comp: PhotoDialogComponent;
+        let fixture: ComponentFixture<PhotoDialogComponent>;
+        let service: PhotoService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [PhotoMySuffixDialogComponent],
+                declarations: [PhotoDialogComponent],
                 providers: [
                     RepairMySuffixService,
-                    PhotoMySuffixService
+                    PhotoService
                 ]
             })
-            .overrideTemplate(PhotoMySuffixDialogComponent, '')
+            .overrideTemplate(PhotoDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(PhotoMySuffixDialogComponent);
+            fixture = TestBed.createComponent(PhotoDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(PhotoMySuffixService);
+            service = fixture.debugElement.injector.get(PhotoService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });
@@ -46,7 +46,7 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new PhotoMySuffix(123);
+                        const entity = new Photo(123);
                         spyOn(service, 'update').and.returnValue(Observable.of(new HttpResponse({body: entity})));
                         comp.photo = entity;
                         // WHEN
@@ -66,7 +66,7 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new PhotoMySuffix();
+                        const entity = new Photo();
                         spyOn(service, 'create').and.returnValue(Observable.of(new HttpResponse({body: entity})));
                         comp.photo = entity;
                         // WHEN

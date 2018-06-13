@@ -5,10 +5,10 @@ import { SERVER_API_URL } from '../../app.constants';
 
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { CarMySuffix } from './car.model';
+import { Car } from './car.model';
 import { createRequestOption } from '../../shared';
 
-export type EntityResponseType = HttpResponse<CarMySuffix>;
+export type EntityResponseType = HttpResponse<Car>;
 
 @Injectable()
 export class CarService {
@@ -17,27 +17,27 @@ export class CarService {
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
-    create(car: CarMySuffix): Observable<EntityResponseType> {
+    create(car: Car): Observable<EntityResponseType> {
         const copy = this.convert(car);
-        return this.http.post<CarMySuffix>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.post<Car>(this.resourceUrl, copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    update(car: CarMySuffix): Observable<EntityResponseType> {
+    update(car: Car): Observable<EntityResponseType> {
         const copy = this.convert(car);
-        return this.http.put<CarMySuffix>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.put<Car>(this.resourceUrl, copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<CarMySuffix>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Car>(`${this.resourceUrl}/${id}`, { observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    query(req?: any): Observable<HttpResponse<CarMySuffix[]>> {
+    query(req?: any): Observable<HttpResponse<Car[]>> {
         const options = createRequestOption(req);
-        return this.http.get<CarMySuffix[]>(this.resourceUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<CarMySuffix[]>) => this.convertArrayResponse(res));
+        return this.http.get<Car[]>(this.resourceUrl, { params: options, observe: 'response' })
+            .map((res: HttpResponse<Car[]>) => this.convertArrayResponse(res));
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
@@ -45,13 +45,13 @@ export class CarService {
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
-        const body: CarMySuffix = this.convertItemFromServer(res.body);
+        const body: Car = this.convertItemFromServer(res.body);
         return res.clone({body});
     }
 
-    private convertArrayResponse(res: HttpResponse<CarMySuffix[]>): HttpResponse<CarMySuffix[]> {
-        const jsonResponse: CarMySuffix[] = res.body;
-        const body: CarMySuffix[] = [];
+    private convertArrayResponse(res: HttpResponse<Car[]>): HttpResponse<Car[]> {
+        const jsonResponse: Car[] = res.body;
+        const body: Car[] = [];
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(this.convertItemFromServer(jsonResponse[i]));
         }
@@ -59,20 +59,20 @@ export class CarService {
     }
 
     /**
-     * Convert a returned JSON object to CarMySuffix.
+     * Convert a returned JSON object to Car.
      */
-    private convertItemFromServer(car: CarMySuffix): CarMySuffix {
-        const copy: CarMySuffix = Object.assign({}, car);
+    private convertItemFromServer(car: Car): Car {
+        const copy: Car = Object.assign({}, car);
         copy.productionDate = this.dateUtils
             .convertLocalDateFromServer(car.productionDate);
         return copy;
     }
 
     /**
-     * Convert a CarMySuffix to a JSON which can be sent to the server.
+     * Convert a Car to a JSON which can be sent to the server.
      */
-    private convert(car: CarMySuffix): CarMySuffix {
-        const copy: CarMySuffix = Object.assign({}, car);
+    private convert(car: Car): Car {
+        const copy: Car = Object.assign({}, car);
         copy.productionDate = this.dateUtils
             .convertLocalDateToServer(car.productionDate);
         return copy;

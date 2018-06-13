@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { MessageMySuffix } from './message-my-suffix.model';
 import { MessageMySuffixPopupService } from './message-my-suffix-popup.service';
 import { MessageMySuffixService } from './message-my-suffix.service';
-import { UserExtMySuffix, UserExtMySuffixService } from '../user-ext-my-suffix';
+import { UserExt, UserExtService } from '../user-ext';
 
 @Component({
     selector: 'jhi-message-my-suffix-dialog',
@@ -20,14 +20,14 @@ export class MessageMySuffixDialogComponent implements OnInit {
     message: MessageMySuffix;
     isSaving: boolean;
 
-    userexts: UserExtMySuffix[];
+    userexts: UserExt[];
     creationDateDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private messageService: MessageMySuffixService,
-        private userExtService: UserExtMySuffixService,
+        private userExtService: UserExtService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -35,7 +35,7 @@ export class MessageMySuffixDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.userExtService.query()
-            .subscribe((res: HttpResponse<UserExtMySuffix[]>) => { this.userexts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<UserExt[]>) => { this.userexts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -72,7 +72,7 @@ export class MessageMySuffixDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackUserExtById(index: number, item: UserExtMySuffix) {
+    trackUserExtById(index: number, item: UserExt) {
         return item.id;
     }
 }

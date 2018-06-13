@@ -1,0 +1,78 @@
+entity UserExt {
+    phoneNumber String maxlength(15),
+    acountType AcountType required
+}
+
+entity Restoration {
+	startDate LocalDate required,
+    finishDate LocalDate,
+    cost Long
+}
+
+entity RestorationQuery {
+	make String required maxlength(20),
+    model String required maxlength(20),
+    vin String,
+    productionDate LocalDate required,
+    description String required
+}
+
+entity Repair {
+	name String required maxlength(15),
+    description String,
+    cost Long,
+    startDate LocalDate required,
+    finishDate LocalDate
+}
+
+entity SubTask {
+	name String required maxlength(30),
+    description String
+}
+
+entity Photo {
+	singlePhoto ImageBlob required,
+    description String,
+    photoDate LocalDate required
+}
+
+entity Car {
+	make String required maxlength(20),
+    model String required maxlength(20),
+    vin String,
+    productionDate LocalDate required,
+    color String required maxlength(15)
+}
+
+entity Message {
+	topic String required maxlength(30),
+    text String required,
+    read Boolean required,
+    creationDate LocalDate required
+}
+
+enum AcountType {
+	EMPLOYEE, MASTER, CUSTOMER
+}
+
+relationship OneToMany {
+	UserExt{senderMessage} to Message{sender},
+    Car{restoration} to Restoration{car},
+    Restoration{repair} to Repair{restoration},
+    Repair{sub_task} to SubTask{repair},
+    Repair{photo} to Photo{repair}
+    RestorationQuery{photo} to Photo{query}
+}
+
+relationship OneToOne {
+    UserExt{user} to User
+}
+
+relationship ManyToOne {
+    Car{owner} to UserExt{car} 
+    RestorationQuery{customer} to UserExt{query}
+}
+dto * with mapstruct
+
+// Set service options to all except few
+service * with serviceImpl

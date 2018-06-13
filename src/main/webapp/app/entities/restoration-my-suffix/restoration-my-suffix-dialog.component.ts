@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { RestorationMySuffix } from './restoration-my-suffix.model';
 import { RestorationMySuffixPopupService } from './restoration-my-suffix-popup.service';
 import { RestorationMySuffixService } from './restoration-my-suffix.service';
-import { CarMySuffix, CarMySuffixService } from '../car-my-suffix';
+import { Car, CarService } from '../car';
 
 @Component({
     selector: 'jhi-restoration-my-suffix-dialog',
@@ -20,7 +20,7 @@ export class RestorationMySuffixDialogComponent implements OnInit {
     restoration: RestorationMySuffix;
     isSaving: boolean;
 
-    cars: CarMySuffix[];
+    cars: Car[];
     startDateDp: any;
     finishDateDp: any;
 
@@ -28,7 +28,7 @@ export class RestorationMySuffixDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private restorationService: RestorationMySuffixService,
-        private carService: CarMySuffixService,
+        private carService: CarService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,7 +36,7 @@ export class RestorationMySuffixDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.carService.query()
-            .subscribe((res: HttpResponse<CarMySuffix[]>) => { this.cars = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<Car[]>) => { this.cars = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -73,7 +73,7 @@ export class RestorationMySuffixDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackCarById(index: number, item: CarMySuffix) {
+    trackCarById(index: number, item: Car) {
         return item.id;
     }
 }

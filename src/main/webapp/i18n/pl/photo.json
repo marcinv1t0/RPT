@@ -19,7 +19,8 @@
             "singlePhoto": "Single Photo",
             "description": "Description",
             "photoDate": "Photo Date",
-            "repair": "Repair"
+            "repair": "Repair",
+            "query": "Query"
         }
     }
 }

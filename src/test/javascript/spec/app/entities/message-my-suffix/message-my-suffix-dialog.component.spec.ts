@@ -9,7 +9,7 @@ import { RptTestModule } from '../../../test.module';
 import { MessageMySuffixDialogComponent } from '../../../../../../main/webapp/app/entities/message-my-suffix/message-my-suffix-dialog.component';
 import { MessageMySuffixService } from '../../../../../../main/webapp/app/entities/message-my-suffix/message-my-suffix.service';
 import { MessageMySuffix } from '../../../../../../main/webapp/app/entities/message-my-suffix/message-my-suffix.model';
-import { UserExtMySuffixService } from '../../../../../../main/webapp/app/entities/user-ext-my-suffix';
+import { UserExtService } from '../../../../../../main/webapp/app/entities/user-ext';
 
 describe('Component Tests', () => {
 
@@ -25,7 +25,7 @@ describe('Component Tests', () => {
                 imports: [RptTestModule],
                 declarations: [MessageMySuffixDialogComponent],
                 providers: [
-                    UserExtMySuffixService,
+                    UserExtService,
                     MessageMySuffixService
                 ]
             })

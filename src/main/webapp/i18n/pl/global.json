@@ -1,9 +1,10 @@
 {
     "global": {
-        "title": "Rpt",
+        "title": "Classic Cars Restorations",
         "browsehappy": "Używasz <strong>przestarzałej</strong> przeglądarki. Proszę <a href=\"http://browsehappy.com/\">uaktualnij swoją przeglądarkę</a> aby poprawić wrażenia z użytkowania tej aplikacji.",
         "menu": {
             "home": "Strona domowa",
+            "query": "Nowe zapytanie",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Encje",
@@ -14,6 +15,9 @@
                 "photoMySuffix": "Photo",
                 "carMySuffix": "Car",
                 "messageMySuffix": "Message",
+                "userExt": "User Ext",
+                "photo": "Photo",
+                "restorationQuery": "Restoration Query",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -48,7 +52,9 @@
             "confirmpassword": "Potwierdź nowe hasło",
             "confirmpassword.placeholder": "Potwierdź nowe hasło",
             "email": "Email",
-            "email.placeholder": "Twój email"
+            "email.placeholder": "Twój email",
+            "phoneNumber": "Numer telefonu",
+            "phoneNumber.placeholder": "Twój numer telefonu"
         },
         "messages": {
             "info": {

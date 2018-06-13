@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="rptApp.restorationQuery.home.title">Restoration Queries</span>
+        <button class="btn btn-primary float-right jh-create-entity create-restoration-query" [routerLink]="['/', { outlets: { popup: ['restoration-query-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="rptApp.restorationQuery.home.createLabel">
+            Create new Restoration Query
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="restorationQueries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="rptApp.restorationQuery.make">Make</span></th>
+            <th><span jhiTranslate="rptApp.restorationQuery.model">Model</span></th>
+            <th><span jhiTranslate="rptApp.restorationQuery.vin">Vin</span></th>
+            <th><span jhiTranslate="rptApp.restorationQuery.productionDate">Production Date</span></th>
+            <th><span jhiTranslate="rptApp.restorationQuery.description">Description</span></th>
+            <th><span jhiTranslate="rptApp.restorationQuery.customer">Customer</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let restorationQuery of restorationQueries ;trackBy: trackId">
+                <td><a [routerLink]="['../restoration-query', restorationQuery.id ]">{{restorationQuery.id}}</a></td>
+                <td>{{restorationQuery.make}}</td>
+                <td>{{restorationQuery.model}}</td>
+                <td>{{restorationQuery.vin}}</td>
+                <td>{{restorationQuery.productionDate | date:'mediumDate'}}</td>
+                <td>{{restorationQuery.description}}</td>
+                <td>
+                    <div *ngIf="restorationQuery.customerId">
+                        <a [routerLink]="['../user-ext', restorationQuery.customerId  ]" >{{restorationQuery.customerId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../restoration-query', restorationQuery.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'restoration-query/'+ restorationQuery.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'restoration-query/'+ restorationQuery.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

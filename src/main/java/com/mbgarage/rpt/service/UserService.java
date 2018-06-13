@@ -1,11 +1,13 @@
 package com.mbgarage.rpt.service;
 
-import com.mbgarage.rpt.config.CacheConfiguration;
 import com.mbgarage.rpt.domain.Authority;
 import com.mbgarage.rpt.domain.User;
+import com.mbgarage.rpt.domain.UserExt;
+import com.mbgarage.rpt.domain.enumeration.AcountType;
 import com.mbgarage.rpt.repository.AuthorityRepository;
 import com.mbgarage.rpt.repository.PersistentTokenRepository;
 import com.mbgarage.rpt.config.Constants;
+import com.mbgarage.rpt.repository.UserExtRepository;
 import com.mbgarage.rpt.repository.UserRepository;
 import com.mbgarage.rpt.security.AuthoritiesConstants;
 import com.mbgarage.rpt.security.SecurityUtils;
@@ -39,6 +41,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserExtRepository userExtRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final SocialService socialService;
@@ -49,8 +53,9 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository, UserExtRepository userExtRepository, PasswordEncoder passwordEncoder, SocialService socialService, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
+        this.userExtRepository = userExtRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
         this.persistentTokenRepository = persistentTokenRepository;
@@ -99,9 +104,10 @@ public class UserService {
             });
     }
 
-    public User registerUser(UserDTO userDTO, String password) {
+    public User registerUser(UserDTO userDTO, String password, String phoneNumber) {
 
         User newUser = new User();
+        UserExt userExt = new UserExt();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
@@ -117,9 +123,15 @@ public class UserService {
         newUser.setActivated(false);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
+        userExt.setPhoneNumber(phoneNumber);
+        userExt.setUser(newUser);
+        userExt.setAcountType(AcountType.CUSTOMER);
         authorities.add(authority);
         newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
+        newUser = userRepository.save(newUser);
+        userExt.setId(newUser.getId());
+        userExtRepository.save(userExt);
+
         cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).evict(newUser.getLogin());
         cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE).evict(newUser.getEmail());
         log.debug("Created Information for User: {}", newUser);

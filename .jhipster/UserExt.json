@@ -20,6 +20,12 @@
             "relationshipName": "car",
             "otherEntityName": "car",
             "otherEntityRelationshipName": "owner"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "query",
+            "otherEntityName": "restorationQuery",
+            "otherEntityRelationshipName": "customer"
         }
     ],
     "fields": [
@@ -45,6 +51,5 @@
     "dto": "mapstruct",
     "pagination": "no",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "angularJSSuffix": "mySuffix"
+    "jpaMetamodelFiltering": false
 }

@@ -54,6 +54,9 @@ public class CacheConfiguration {
             cm.createCache(com.mbgarage.rpt.domain.Car.class.getName(), jcacheConfiguration);
             cm.createCache(com.mbgarage.rpt.domain.Car.class.getName() + ".restorations", jcacheConfiguration);
             cm.createCache(com.mbgarage.rpt.domain.Message.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.UserExt.class.getName() + ".queries", jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.RestorationQuery.class.getName(), jcacheConfiguration);
+            cm.createCache(com.mbgarage.rpt.domain.RestorationQuery.class.getName() + ".photos", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

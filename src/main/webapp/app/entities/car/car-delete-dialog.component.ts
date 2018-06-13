@@ -4,17 +4,17 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { CarMySuffix } from './car.model';
+import { Car } from './car.model';
 import { CarPopupService } from './car-popup.service';
 import { CarService } from './car.service';
 
 @Component({
-    selector: 'jhi-car-my-suffix-delete-dialog',
+    selector: 'jhi-car-delete-dialog',
     templateUrl: './car-delete-dialog.component.html'
 })
 export class CarDeleteDialogComponent {
 
-    car: CarMySuffix;
+    car: Car;
 
     constructor(
         private carService: CarService,
@@ -39,10 +39,10 @@ export class CarDeleteDialogComponent {
 }
 
 @Component({
-    selector: 'jhi-car-my-suffix-delete-popup',
+    selector: 'jhi-car-delete-popup',
     template: ''
 })
-export class CarMySuffixDeletePopupComponent implements OnInit, OnDestroy {
+export class CarDeletePopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
