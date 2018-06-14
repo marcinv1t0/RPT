@@ -31,6 +31,7 @@ import {
     ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
+import {UploadFileService} from "./query/upload-photo.service";
 
 @NgModule({
     imports: [
@@ -59,6 +60,7 @@ import {
         QueryService,
         NgbActiveModal,
         UserRouteAccessService,
+        UploadFileService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthExpiredInterceptor,
