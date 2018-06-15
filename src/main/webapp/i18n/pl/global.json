@@ -58,7 +58,11 @@
             "email": "Email",
             "email.placeholder": "Twój email",
             "phoneNumber": "Numer telefonu",
-            "phoneNumber.placeholder": "Twój numer telefonu"
+            "phoneNumber.placeholder": "Twój numer telefonu",
+            "firstName": "Imię",
+            "firstName.placeholder": "Twóje imię",
+            "lastName": "Nazwisko",
+            "lastName.placeholder": "Twóje nazwisko"
         },
         "messages": {
             "info": {
