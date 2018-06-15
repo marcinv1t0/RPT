@@ -3,9 +3,13 @@
     "rptApp": {
         "restoration" : {
             "home": {
-                "title": "Restorations",
-                "createLabel": "Dodaj Restoration",
-                "createOrEditLabel": "Dodaj lub edytuj: Restoration"
+                "title": "Projekty",
+                "createLabel": "Dodaj projekt",
+                "createOrEditLabel": "Dodaj lub edytuj projekt"
+            },
+            "creation": {
+                "carLabel": "Dane pojazdu",
+                "resLabel": "Dane naprawy"
             },
             "created": "Utworzono nowy Restoration z identyfikatorem {{ param }}",
             "updated": "Uaktualniono Restoration z identyfikatorem {{ param }}",
@@ -14,7 +18,7 @@
                 "question": "Czy na pewno chcesz usunąć Restoration {{ id }}?"
             },
             "detail": {
-                "title": "Restoration"
+                "title": "Projekt nr"
             },
             "startDate": "Start Date",
             "finishDate": "Finish Date",

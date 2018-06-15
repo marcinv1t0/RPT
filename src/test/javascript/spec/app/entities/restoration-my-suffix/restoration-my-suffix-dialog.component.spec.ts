@@ -13,7 +13,7 @@ import { CarService } from '../../../../../../main/webapp/app/entities/car';
 
 describe('Component Tests', () => {
 
-    describe('RestorationMySuffix Management Dialog Component', () => {
+    describe('Restoration Management Dialog Component', () => {
         let comp: RestorationMySuffixDialogComponent;
         let fixture: ComponentFixture<RestorationMySuffixDialogComponent>;
         let service: RestorationMySuffixService;

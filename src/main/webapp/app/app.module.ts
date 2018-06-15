@@ -30,6 +30,8 @@ import {
     ErrorComponent
 } from './layouts';
 
+import {RptRestorationModule} from './restoration/restoration.module';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -40,6 +42,7 @@ import {
         RptAdminModule,
         RptAccountModule,
         RptEntityModule,
+        RptRestorationModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

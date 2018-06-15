@@ -10,7 +10,7 @@ import { RestorationMySuffix } from '../../../../../../main/webapp/app/entities/
 
 describe('Component Tests', () => {
 
-    describe('RestorationMySuffix Management Detail Component', () => {
+    describe('Restoration Management Detail Component', () => {
         let comp: RestorationMySuffixDetailComponent;
         let fixture: ComponentFixture<RestorationMySuffixDetailComponent>;
         let service: RestorationMySuffixService;

@@ -8,7 +8,7 @@ import { SERVER_API_URL } from '../../../../../../main/webapp/app/app.constants'
 
 describe('Service Tests', () => {
 
-    describe('RestorationMySuffix Service', () => {
+    describe('Restoration Service', () => {
         let injector: TestBed;
         let service: RestorationMySuffixService;
         let httpMock: HttpTestingController;
@@ -37,7 +37,7 @@ describe('Service Tests', () => {
                 const resourceUrl = SERVER_API_URL + 'api/restorations';
                 expect(req.request.url).toEqual(resourceUrl + '/' + 123);
             });
-            it('should return RestorationMySuffix', () => {
+            it('should return Restoration', () => {
 
                 service.find(123).subscribe((received) => {
                     expect(received.body.id).toEqual(123);

@@ -132,6 +132,51 @@
                             Your username can only contain letters and digits.
                         </small>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="firstName" jhiTranslate="global.form.firstName">Username</label>
+                    <input type="text" class="form-control" [(ngModel)]="registerAccount.firstName" id="firstName" name="firstName" #firstName="ngModel" placeholder="{{'global.form.firstName.placeholder' | translate}}"
+                           required minlength="1" maxlength="50" pattern="^[_'.@A-Za-z0-9-]*$">
+                    <div *ngIf="firstName.dirty && firstName.invalid">
+                        <small class="form-text text-danger" *ngIf="firstName.errors.required" jhiTranslate="register.messages.validate.firstName.required">
+                            Your username is required.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="firstName.errors.minlength"
+                               jhiTranslate="register.messages.validate.firstName.minlength">
+                            Your username is required to be at least 1 character.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="firstName.errors.maxlength"
+                               jhiTranslate="register.messages.validate.firstName.maxlength">
+                            Your username cannot be longer than 50 characters.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="firstName.errors.pattern"
+                               jhiTranslate="register.messages.validate.firstName.pattern">
+                            Your username can only contain letters and digits.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="lastName" jhiTranslate="global.form.lastName">Username</label>
+                    <input type="text" class="form-control" [(ngModel)]="registerAccount.lastName" id="lastName" name="lastName" #lastName="ngModel" placeholder="{{'global.form.lastName.placeholder' | translate}}"
+                           required minlength="1" maxlength="50" pattern="^[_'.@A-Za-z0-9-]*$">
+                    <div *ngIf="lastName.dirty && lastName.invalid">
+                        <small class="form-text text-danger" *ngIf="lastName.errors.required" jhiTranslate="register.messages.validate.lastName.required">
+                            Your username is required.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="lastName.errors.minlength"
+                               jhiTranslate="register.messages.validate.lastName.minlength">
+                            Your username is required to be at least 1 character.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="lastName.errors.maxlength"
+                               jhiTranslate="register.messages.validate.lastName.maxlength">
+                            Your username cannot be longer than 50 characters.
+                        </small>
+                        <small class="form-text text-danger" *ngIf="lastName.errors.pattern"
+                               jhiTranslate="register.messages.validate.lastName.pattern">
+                            Your username can only contain letters and digits.
+                        </small>
+                    </div>
+                </div>
 
                 <button type="submit" [disabled]="registerForm.form.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
             </form>
@@ -141,12 +186,6 @@
                 <a class="alert-link" (click)="openLogin()" jhiTranslate="global.messages.info.authenticated.link">sign in</a><span jhiTranslate="global.messages.info.authenticated.suffix">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
             </div>
         </div>
-        <div class="col-md-4">
-            <br/>
-            <jhi-social provider="google"></jhi-social>
-            <jhi-social provider="facebook"></jhi-social>
-            <jhi-social provider="twitter"></jhi-social>
-            <!-- jhipster-needle-add-social-button -->
-        </div>
+
     </div>
 </div>

@@ -3,9 +3,9 @@
     "rptApp": {
         "repair" : {
             "home": {
-                "title": "Repairs",
-                "createLabel": "Dodaj Repair",
-                "createOrEditLabel": "Dodaj lub edytuj: Repair"
+                "title": "Naprawy",
+                "createLabel": "Dodaj czynność",
+                "createOrEditLabel": "Dodaj lub edytuj czynność"
             },
             "created": "Utworzono nowy Repair z identyfikatorem {{ param }}",
             "updated": "Uaktualniono Repair z identyfikatorem {{ param }}",
@@ -14,7 +14,7 @@
                 "question": "Czy na pewno chcesz usunąć Repair {{ id }}?"
             },
             "detail": {
-                "title": "Repair"
+                "title": "Szczegóły naprawy"
             },
             "name": "Name",
             "description": "Description",

@@ -1,0 +1,115 @@
+
+<div *ngIf="restoration">
+    <jhi-alert-error></jhi-alert-error>
+    <div class="row">
+        <div class="col-md-4">
+            <h2><span jhiTranslate="rptApp.restoration.detail.title">Restoration nr </span> {{restoration.id}} dla {{getCarOwner(restoration.carId).firstName}} {{getCarOwner(restoration.carId).lastName}}</h2>
+            <hr>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="rptApp.car.owner">Właściciel</span></dt>
+                <dd>
+                    <span>{{getCarOwner(restoration.carId).firstName}} {{getCarOwner(restoration.carId).lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.car.make">Make</span></dt>
+                <dd>
+                    <span>{{getCar(restoration.carId).make}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.car.model">Model</span></dt>
+                <dd>
+                    <span>{{getCar(restoration.carId).model}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.restoration.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{restoration.startDate | date:'mediumDate'}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.restoration.finishDate">Finish Date</span></dt>
+                <dd>
+                    <span>{{restoration.finishDate | date:'mediumDate'}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/', { outlets: { popup: 'restoration-my-suffix/'+ restoration.id + '/edit'} }]"
+                    replaceUrl="true"
+                    queryParamsHandling="merge"
+                    class="btn btn-primary">
+                <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+        <div class="col-md-8">
+            <div>
+                <h2>
+                    <span jhiTranslate="rptApp.repair.home.title">Repairs</span>
+                </h2>
+                <div class="row">
+                </div>
+                <br/>
+                <div class="table-responsive" *ngIf="repairs">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><span jhiTranslate="global.field.id">ID</span></th>
+                            <th><span jhiTranslate="rptApp.repair.name">Name</span></th>
+                            <th><span jhiTranslate="rptApp.repair.description">Description</span></th>
+                            <th><span jhiTranslate="rptApp.repair.cost">Cost</span></th>
+                            <th><span jhiTranslate="rptApp.repair.startDate">Start Date</span></th>
+                            <th><span jhiTranslate="rptApp.repair.finishDate">Finish Date</span></th>
+                            <th><span jhiTranslate="rptApp.repair.restoration">Restoration</span></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let repair of repairs ;trackBy: trackIdRep">
+                            <td><a [routerLink]="['../repair-my-suffix', repair.id ]">{{repair.id}}</a></td>
+                            <td>{{repair.name}}</td>
+                            <td>{{repair.description}}</td>
+                            <td>{{repair.cost}}</td>
+                            <td>{{repair.startDate | date:'mediumDate'}}</td>
+                            <td>{{repair.finishDate | date:'mediumDate'}}</td>
+                            <td>
+                                <div *ngIf="repair.restorationId">
+                                    <a [routerLink]="['../restoration-my-suffix', repair.restorationId  ]" >{{repair.restorationId}}</a>
+                                </div>
+                            </td>
+                            <td class="text-right">
+                                <div class="btn-group flex-btn-group-container">
+                                    <button type="submit"
+                                            [routerLink]="['../repair-details', repair.id ]"
+                                            class="btn btn-info btn-sm">
+                                        <span class="fa fa-eye"></span>
+                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                    </button>
+                                    <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                                            [routerLink]="['/', { outlets: { popup: 'repair-my-suffix/'+ repair.id + '/edit'} }]"
+                                            replaceUrl="true"
+                                            queryParamsHandling="merge"
+                                            class="btn btn-primary btn-sm">
+                                        <span class="fa fa-pencil"></span>
+                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                    </button>
+                                    <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
+                                            [routerLink]="['/', { outlets: { popup: 'repair-my-suffix/'+ repair.id + '/delete'} }]"
+                                            replaceUrl="true"
+                                            queryParamsHandling="merge"
+                                            class="btn btn-danger btn-sm">
+                                        <span class="fa fa-remove"></span>
+                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

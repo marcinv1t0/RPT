@@ -1,44 +1,70 @@
 
 <div *ngIf="repair">
-    <h2><span jhiTranslate="rptApp.repair.detail.title">Repair</span> {{repair.id}}</h2>
+    <h2><span jhiTranslate="rptApp.repair.detail.title">Repair details</span></h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="rptApp.repair.name">Name</span></dt>
-        <dd>
-            <span>{{repair.name}}</span>
-        </dd>
-        <dt><span jhiTranslate="rptApp.repair.description">Description</span></dt>
-        <dd>
-            <span>{{repair.description}}</span>
-        </dd>
-        <dt><span jhiTranslate="rptApp.repair.cost">Cost</span></dt>
-        <dd>
-            <span>{{repair.cost}}</span>
-        </dd>
-        <dt><span jhiTranslate="rptApp.repair.startDate">Start Date</span></dt>
-        <dd>
-            <span>{{repair.startDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="rptApp.repair.finishDate">Finish Date</span></dt>
-        <dd>
-            <span>{{repair.finishDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="rptApp.repair.restoration">Restoration</span></dt>
-        <dd>
-            <div *ngIf="repair.restorationId">
-                <a [routerLink]="['/restoration-my-suffix', repair.restorationId]">{{repair.restorationId}}</a>
-            </div>
-        </dd>
-    </dl>
-
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="rptApp.repair.name">Name</span></dt>
+                <dd>
+                    <span>{{repair.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.repair.description">Description</span></dt>
+                <dd>
+                    <span>{{repair.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.repair.cost">Cost</span></dt>
+                <dd>
+                    <span>{{repair.cost}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.repair.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{repair.startDate | date:'mediumDate'}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.repair.finishDate">Finish Date</span></dt>
+                <dd>
+                    <span>{{repair.finishDate | date:'mediumDate'}}</span>
+                </dd>
+                <dt><span jhiTranslate="rptApp.repair.restoration">Restoration</span></dt>
+                <dd>
+                    <div *ngIf="repair.restorationId">
+                        <a [routerLink]="['/restoration-my-suffix', repair.restorationId]">{{repair.restorationId}}</a>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <table>
+                <tr *ngFor="let photo of photos">
+                    <td>
+                        <ion-grid>
+                            <div *ngFor="let photo of photos; let i = index;">
+                                <ion-row *ngIf="i % 3 === 0">
+                                    <ion-col col-4 (click)="openPhoto(photo)" *ngIf="i < photos.length">
+                                        <img [src]="'data:' + photos[i].singlePhotoContentType + ';base64,' + photos[i].singlePhoto" style="max-height: 100px;" *ngIf="photo.singlePhoto" alt="photo image"/>
+                                    </ion-col>
+                                    <ion-col col-4 (click)="openPhoto(photo)" *ngIf="i+1 < photos.length">
+                                        <img [src]="'data:' + photos[i+1].singlePhotoContentType + ';base64,' + photos[i+1].singlePhoto" style="max-height: 100px;" *ngIf="photo.singlePhoto" alt="photo image"/>
+                                    </ion-col>
+                                    <ion-col col-4 (click)="openPhoto(photo)" *ngIf="i+2 < photos.length">
+                                        <img [src]="'data:' + photos[i+2].singlePhotoContentType + ';base64,' + photos[i+2].singlePhoto" style="max-height: 100px;" *ngIf="photo.singlePhoto" alt="photo image"/>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                        </ion-grid>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button"
+    <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
             [routerLink]="['/', { outlets: { popup: 'repair-my-suffix/'+ repair.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"

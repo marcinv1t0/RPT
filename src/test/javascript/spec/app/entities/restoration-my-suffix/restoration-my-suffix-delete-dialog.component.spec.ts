@@ -10,7 +10,7 @@ import { RestorationMySuffixService } from '../../../../../../main/webapp/app/en
 
 describe('Component Tests', () => {
 
-    describe('RestorationMySuffix Management Delete Component', () => {
+    describe('Restoration Management Delete Component', () => {
         let comp: RestorationMySuffixDeleteDialogComponent;
         let fixture: ComponentFixture<RestorationMySuffixDeleteDialogComponent>;
         let service: RestorationMySuffixService;
