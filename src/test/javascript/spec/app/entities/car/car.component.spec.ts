@@ -4,33 +4,33 @@ import { Observable } from 'rxjs/Observable';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { RptTestModule } from '../../../test.module';
-import { RestorationQueryComponent } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query.component';
-import { RestorationQueryService } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query.service';
-import { RestorationQuery } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query.model';
+import { CarComponent } from '../../../../../../main/webapp/app/entities/car/car.component';
+import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
+import { Car } from '../../../../../../main/webapp/app/entities/car/car.model';
 
 describe('Component Tests', () => {
 
-    describe('RestorationQuery Management Component', () => {
-        let comp: RestorationQueryComponent;
-        let fixture: ComponentFixture<RestorationQueryComponent>;
-        let service: RestorationQueryService;
+    describe('Car Management Component', () => {
+        let comp: CarComponent;
+        let fixture: ComponentFixture<CarComponent>;
+        let service: CarService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [RestorationQueryComponent],
+                declarations: [CarComponent],
                 providers: [
-                    RestorationQueryService
+                    CarService
                 ]
             })
-            .overrideTemplate(RestorationQueryComponent, '')
+            .overrideTemplate(CarComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(RestorationQueryComponent);
+            fixture = TestBed.createComponent(CarComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(RestorationQueryService);
+            service = fixture.debugElement.injector.get(CarService);
         });
 
         describe('OnInit', () => {
@@ -38,7 +38,7 @@ describe('Component Tests', () => {
                 // GIVEN
                 const headers = new HttpHeaders().append('link', 'link;link');
                 spyOn(service, 'query').and.returnValue(Observable.of(new HttpResponse({
-                    body: [new RestorationQuery(123)],
+                    body: [new Car(123)],
                     headers
                 })));
 
@@ -47,7 +47,7 @@ describe('Component Tests', () => {
 
                 // THEN
                 expect(service.query).toHaveBeenCalled();
-                expect(comp.restorationQueries[0]).toEqual(jasmine.objectContaining({id: 123}));
+                expect(comp.cars[0]).toEqual(jasmine.objectContaining({id: 123}));
             });
         });
     });

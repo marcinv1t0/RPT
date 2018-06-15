@@ -21,16 +21,16 @@
         <dd>
             <span>{{photo.photoDate | date:'mediumDate'}}</span>
         </dd>
+        <dt><span jhiTranslate="rptApp.photo.car">Car</span></dt>
+        <dd>
+            <div *ngIf="photo.carId">
+                <a [routerLink]="['/car', photo.carId]">{{photo.carId}}</a>
+            </div>
+        </dd>
         <dt><span jhiTranslate="rptApp.photo.repair">Repair</span></dt>
         <dd>
             <div *ngIf="photo.repairId">
                 <a [routerLink]="['/repair-my-suffix', photo.repairId]">{{photo.repairId}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="rptApp.photo.query">Query</span></dt>
-        <dd>
-            <div *ngIf="photo.queryId">
-                <a [routerLink]="['/restoration-query', photo.queryId]">{{photo.queryId}}</a>
             </div>
         </dd>
     </dl>

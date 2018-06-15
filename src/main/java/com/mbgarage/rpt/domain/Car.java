@@ -58,6 +58,11 @@ public class Car implements Serializable {
     @ManyToOne
     private UserExt owner;
 
+    @OneToMany(mappedBy = "car")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Photo> photos = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -168,6 +173,31 @@ public class Car implements Serializable {
 
     public void setOwner(UserExt userExt) {
         this.owner = userExt;
+    }
+
+    public Set<Photo> getPhotos() {
+        return photos;
+    }
+
+    public Car photos(Set<Photo> photos) {
+        this.photos = photos;
+        return this;
+    }
+
+    public Car addPhoto(Photo photo) {
+        this.photos.add(photo);
+        photo.setCar(this);
+        return this;
+    }
+
+    public Car removePhoto(Photo photo) {
+        this.photos.remove(photo);
+        photo.setCar(null);
+        return this;
+    }
+
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

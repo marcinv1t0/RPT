@@ -8,17 +8,17 @@
     -->
     <changeSet id="20180601184650-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="car_id"
+                                 baseTableName="photo"
+                                 constraintName="fk_photo_car_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="car"/>
+
         <addForeignKeyConstraint baseColumnNames="repair_id"
                                  baseTableName="photo"
                                  constraintName="fk_photo_repair_id"
                                  referencedColumnNames="id"
                                  referencedTableName="repair"/>
-
-        <addForeignKeyConstraint baseColumnNames="query_id"
-                                 baseTableName="photo"
-                                 constraintName="fk_photo_query_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="restoration_query"/>
 
     </changeSet>
 </databaseChangeLog>

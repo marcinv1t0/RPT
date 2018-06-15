@@ -9,8 +9,8 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Photo } from './photo.model';
 import { PhotoPopupService } from './photo-popup.service';
 import { PhotoService } from './photo.service';
+import { Car, CarService } from '../car';
 import { RepairMySuffix, RepairMySuffixService } from '../repair-my-suffix';
-import { RestorationQuery, RestorationQueryService } from '../restoration-query';
 
 @Component({
     selector: 'jhi-photo-dialog',
@@ -21,9 +21,9 @@ export class PhotoDialogComponent implements OnInit {
     photo: Photo;
     isSaving: boolean;
 
-    repairs: RepairMySuffix[];
+    cars: Car[];
 
-    restorationqueries: RestorationQuery[];
+    repairs: RepairMySuffix[];
     photoDateDp: any;
 
     constructor(
@@ -31,8 +31,8 @@ export class PhotoDialogComponent implements OnInit {
         private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
         private photoService: PhotoService,
+        private carService: CarService,
         private repairService: RepairMySuffixService,
-        private restorationQueryService: RestorationQueryService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
     ) {
@@ -40,10 +40,10 @@ export class PhotoDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.carService.query()
+            .subscribe((res: HttpResponse<Car[]>) => { this.cars = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.repairService.query()
             .subscribe((res: HttpResponse<RepairMySuffix[]>) => { this.repairs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.restorationQueryService.query()
-            .subscribe((res: HttpResponse<RestorationQuery[]>) => { this.restorationqueries = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     byteSize(field) {
@@ -96,11 +96,11 @@ export class PhotoDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackRepairById(index: number, item: RepairMySuffix) {
+    trackCarById(index: number, item: Car) {
         return item.id;
     }
 
-    trackRestorationQueryById(index: number, item: RestorationQuery) {
+    trackRepairById(index: number, item: RepairMySuffix) {
         return item.id;
     }
 }

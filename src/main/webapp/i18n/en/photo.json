@@ -19,8 +19,8 @@
             "singlePhoto": "Single Photo",
             "description": "Description",
             "photoDate": "Photo Date",
-            "repair": "Repair",
-            "query": "Query"
+            "car": "Car",
+            "repair": "Repair"
         }
     }
 }

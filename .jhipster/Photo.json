@@ -3,14 +3,14 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "repair",
-            "otherEntityName": "repair",
+            "relationshipName": "car",
+            "otherEntityName": "car",
             "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "query",
-            "otherEntityName": "restorationQuery",
+            "relationshipName": "repair",
+            "otherEntityName": "repair",
             "otherEntityField": "id"
         }
     ],

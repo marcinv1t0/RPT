@@ -7,8 +7,8 @@ export class Photo implements BaseEntity {
         public singlePhoto?: any,
         public description?: string,
         public photoDate?: any,
+        public carId?: number,
         public repairId?: number,
-        public queryId?: number,
     ) {
     }
 }

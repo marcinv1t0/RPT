@@ -25,6 +25,8 @@ public class UserExt implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Size(max = 15)
@@ -49,11 +51,6 @@ public class UserExt implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Car> cars = new HashSet<>();
-
-    @OneToMany(mappedBy = "customer")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<RestorationQuery> queries = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -151,31 +148,6 @@ public class UserExt implements Serializable {
 
     public void setCars(Set<Car> cars) {
         this.cars = cars;
-    }
-
-    public Set<RestorationQuery> getQueries() {
-        return queries;
-    }
-
-    public UserExt queries(Set<RestorationQuery> restorationQueries) {
-        this.queries = restorationQueries;
-        return this;
-    }
-
-    public UserExt addQuery(RestorationQuery restorationQuery) {
-        this.queries.add(restorationQuery);
-        restorationQuery.setCustomer(this);
-        return this;
-    }
-
-    public UserExt removeQuery(RestorationQuery restorationQuery) {
-        this.queries.remove(restorationQuery);
-        restorationQuery.setCustomer(null);
-        return this;
-    }
-
-    public void setQueries(Set<RestorationQuery> restorationQueries) {
-        this.queries = restorationQueries;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

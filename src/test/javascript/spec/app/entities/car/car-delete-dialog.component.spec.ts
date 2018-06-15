@@ -5,34 +5,34 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { RestorationQueryDeleteDialogComponent } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query-delete-dialog.component';
-import { RestorationQueryService } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query.service';
+import { CarDeleteDialogComponent } from '../../../../../../main/webapp/app/entities/car/car-delete-dialog.component';
+import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
 
 describe('Component Tests', () => {
 
-    describe('RestorationQuery Management Delete Component', () => {
-        let comp: RestorationQueryDeleteDialogComponent;
-        let fixture: ComponentFixture<RestorationQueryDeleteDialogComponent>;
-        let service: RestorationQueryService;
+    describe('Car Management Delete Component', () => {
+        let comp: CarDeleteDialogComponent;
+        let fixture: ComponentFixture<CarDeleteDialogComponent>;
+        let service: CarService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [RestorationQueryDeleteDialogComponent],
+                declarations: [CarDeleteDialogComponent],
                 providers: [
-                    RestorationQueryService
+                    CarService
                 ]
             })
-            .overrideTemplate(RestorationQueryDeleteDialogComponent, '')
+            .overrideTemplate(CarDeleteDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(RestorationQueryDeleteDialogComponent);
+            fixture = TestBed.createComponent(CarDeleteDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(RestorationQueryService);
+            service = fixture.debugElement.injector.get(CarService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });

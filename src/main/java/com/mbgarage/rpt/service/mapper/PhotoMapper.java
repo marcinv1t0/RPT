@@ -8,15 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Photo and its DTO PhotoDTO.
  */
-@Mapper(componentModel = "spring", uses = {RepairMapper.class, RestorationQueryMapper.class})
+@Mapper(componentModel = "spring", uses = {CarMapper.class, RepairMapper.class})
 public interface PhotoMapper extends EntityMapper<PhotoDTO, Photo> {
 
+    @Mapping(source = "car.id", target = "carId")
     @Mapping(source = "repair.id", target = "repairId")
-    @Mapping(source = "query.id", target = "queryId")
     PhotoDTO toDto(Photo photo);
 
+    @Mapping(source = "carId", target = "car")
     @Mapping(source = "repairId", target = "repair")
-    @Mapping(source = "queryId", target = "query")
     Photo toEntity(PhotoDTO photoDTO);
 
     default Photo fromId(Long id) {

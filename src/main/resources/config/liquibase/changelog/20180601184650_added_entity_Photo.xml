@@ -36,11 +36,11 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="repair_id" type="bigint">
+            <column name="car_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
-            <column name="query_id" type="bigint">
+            <column name="repair_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

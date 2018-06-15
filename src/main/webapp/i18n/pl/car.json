@@ -22,7 +22,8 @@
             "productionDate": "Production Date",
             "color": "Color",
             "restoration": "Restoration",
-            "owner": "Owner"
+            "owner": "Owner",
+            "photo": "Photo"
         }
     }
 }

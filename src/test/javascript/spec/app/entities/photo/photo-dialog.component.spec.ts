@@ -9,8 +9,8 @@ import { RptTestModule } from '../../../test.module';
 import { PhotoDialogComponent } from '../../../../../../main/webapp/app/entities/photo/photo-dialog.component';
 import { PhotoService } from '../../../../../../main/webapp/app/entities/photo/photo.service';
 import { Photo } from '../../../../../../main/webapp/app/entities/photo/photo.model';
+import { CarService } from '../../../../../../main/webapp/app/entities/car';
 import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix';
-import { RestorationQueryService } from '../../../../../../main/webapp/app/entities/restoration-query';
 
 describe('Component Tests', () => {
 
@@ -26,8 +26,8 @@ describe('Component Tests', () => {
                 imports: [RptTestModule],
                 declarations: [PhotoDialogComponent],
                 providers: [
+                    CarService,
                     RepairMySuffixService,
-                    RestorationQueryService,
                     PhotoService
                 ]
             })

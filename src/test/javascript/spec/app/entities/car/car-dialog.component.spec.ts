@@ -6,37 +6,37 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { RestorationQueryDialogComponent } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query-dialog.component';
-import { RestorationQueryService } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query.service';
-import { RestorationQuery } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query.model';
+import { CarDialogComponent } from '../../../../../../main/webapp/app/entities/car/car-dialog.component';
+import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
+import { Car } from '../../../../../../main/webapp/app/entities/car/car.model';
 import { UserExtService } from '../../../../../../main/webapp/app/entities/user-ext';
 
 describe('Component Tests', () => {
 
-    describe('RestorationQuery Management Dialog Component', () => {
-        let comp: RestorationQueryDialogComponent;
-        let fixture: ComponentFixture<RestorationQueryDialogComponent>;
-        let service: RestorationQueryService;
+    describe('Car Management Dialog Component', () => {
+        let comp: CarDialogComponent;
+        let fixture: ComponentFixture<CarDialogComponent>;
+        let service: CarService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [RestorationQueryDialogComponent],
+                declarations: [CarDialogComponent],
                 providers: [
                     UserExtService,
-                    RestorationQueryService
+                    CarService
                 ]
             })
-            .overrideTemplate(RestorationQueryDialogComponent, '')
+            .overrideTemplate(CarDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(RestorationQueryDialogComponent);
+            fixture = TestBed.createComponent(CarDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(RestorationQueryService);
+            service = fixture.debugElement.injector.get(CarService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });
@@ -46,9 +46,9 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new RestorationQuery(123);
+                        const entity = new Car(123);
                         spyOn(service, 'update').and.returnValue(Observable.of(new HttpResponse({body: entity})));
-                        comp.restorationQuery = entity;
+                        comp.car = entity;
                         // WHEN
                         comp.save();
                         tick(); // simulate async
@@ -56,7 +56,7 @@ describe('Component Tests', () => {
                         // THEN
                         expect(service.update).toHaveBeenCalledWith(entity);
                         expect(comp.isSaving).toEqual(false);
-                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'restorationQueryListModification', content: 'OK'});
+                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'carListModification', content: 'OK'});
                         expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
                     })
                 )
@@ -66,9 +66,9 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new RestorationQuery();
+                        const entity = new Car();
                         spyOn(service, 'create').and.returnValue(Observable.of(new HttpResponse({body: entity})));
-                        comp.restorationQuery = entity;
+                        comp.car = entity;
                         // WHEN
                         comp.save();
                         tick(); // simulate async
@@ -76,7 +76,7 @@ describe('Component Tests', () => {
                         // THEN
                         expect(service.create).toHaveBeenCalledWith(entity);
                         expect(comp.isSaving).toEqual(false);
-                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'restorationQueryListModification', content: 'OK'});
+                        expect(mockEventManager.broadcastSpy).toHaveBeenCalledWith({ name: 'carListModification', content: 'OK'});
                         expect(mockActiveModal.dismissSpy).toHaveBeenCalled();
                     })
                 )

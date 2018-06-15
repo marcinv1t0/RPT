@@ -10,6 +10,7 @@ export class Car implements BaseEntity {
         public color?: string,
         public restorations?: BaseEntity[],
         public ownerId?: number,
+        public photos?: BaseEntity[],
     ) {
     }
 }

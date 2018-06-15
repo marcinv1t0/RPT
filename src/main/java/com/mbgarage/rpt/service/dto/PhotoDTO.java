@@ -26,9 +26,9 @@ public class PhotoDTO implements Serializable {
     @NotNull
     private LocalDate photoDate;
 
-    private Long repairId;
+    private Long carId;
 
-    private Long queryId;
+    private Long repairId;
 
     public Long getId() {
         return id;
@@ -70,20 +70,20 @@ public class PhotoDTO implements Serializable {
         this.photoDate = photoDate;
     }
 
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
+    }
+
     public Long getRepairId() {
         return repairId;
     }
 
     public void setRepairId(Long repairId) {
         this.repairId = repairId;
-    }
-
-    public Long getQueryId() {
-        return queryId;
-    }
-
-    public void setQueryId(Long restorationQueryId) {
-        this.queryId = restorationQueryId;
     }
 
     @Override

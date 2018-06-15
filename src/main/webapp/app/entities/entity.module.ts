@@ -7,7 +7,6 @@ import { RptSubTaskMySuffixModule } from './sub-task-my-suffix/sub-task-my-suffi
 import { RptCarModule } from './car/car.module';
 import { RptMessageMySuffixModule } from './message-my-suffix/message-my-suffix.module';
 import { RptPhotoModule } from './photo/photo.module';
-import { RptRestorationQueryModule } from './restoration-query/restoration-query.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -19,7 +18,6 @@ import { RptRestorationQueryModule } from './restoration-query/restoration-query
         RptMessageMySuffixModule,
         RptUserExtModule,
         RptPhotoModule,
-        RptRestorationQueryModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

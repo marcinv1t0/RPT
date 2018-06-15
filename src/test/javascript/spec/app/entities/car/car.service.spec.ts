@@ -3,14 +3,14 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { RestorationQueryService } from '../../../../../../main/webapp/app/entities/restoration-query/restoration-query.service';
+import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
 import { SERVER_API_URL } from '../../../../../../main/webapp/app/app.constants';
 
 describe('Service Tests', () => {
 
-    describe('RestorationQuery Service', () => {
+    describe('Car Service', () => {
         let injector: TestBed;
-        let service: RestorationQueryService;
+        let service: CarService;
         let httpMock: HttpTestingController;
 
         beforeEach(() => {
@@ -20,11 +20,11 @@ describe('Service Tests', () => {
                 ],
                 providers: [
                     JhiDateUtils,
-                    RestorationQueryService
+                    CarService
                 ]
             });
             injector = getTestBed();
-            service = injector.get(RestorationQueryService);
+            service = injector.get(CarService);
             httpMock = injector.get(HttpTestingController);
         });
 
@@ -34,10 +34,10 @@ describe('Service Tests', () => {
 
                 const req  = httpMock.expectOne({ method: 'GET' });
 
-                const resourceUrl = SERVER_API_URL + 'api/restoration-queries';
+                const resourceUrl = SERVER_API_URL + 'api/cars';
                 expect(req.request.url).toEqual(resourceUrl + '/' + 123);
             });
-            it('should return RestorationQuery', () => {
+            it('should return Car', () => {
 
                 service.find(123).subscribe((received) => {
                     expect(received.body.id).toEqual(123);

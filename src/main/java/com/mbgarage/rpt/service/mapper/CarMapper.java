@@ -16,6 +16,7 @@ public interface CarMapper extends EntityMapper<CarDTO, Car> {
 
     @Mapping(target = "restorations", ignore = true)
     @Mapping(source = "ownerId", target = "owner")
+    @Mapping(target = "photos", ignore = true)
     Car toEntity(CarDTO carDTO);
 
     default Car fromId(Long id) {

@@ -40,8 +40,8 @@ describe('Photo e2e test', () => {
         expect(photoDialogPage.getDescriptionInput()).toMatch('description');
         photoDialogPage.setPhotoDateInput('2000-12-31');
         expect(photoDialogPage.getPhotoDateInput()).toMatch('2000-12-31');
+        photoDialogPage.carSelectLastOption();
         photoDialogPage.repairSelectLastOption();
-        photoDialogPage.querySelectLastOption();
         photoDialogPage.save();
         expect(photoDialogPage.getSaveButton().isPresent()).toBeFalsy();
     });
@@ -71,8 +71,8 @@ export class PhotoDialogPage {
     singlePhotoInput = element(by.css('input#file_singlePhoto'));
     descriptionInput = element(by.css('input#field_description'));
     photoDateInput = element(by.css('input#field_photoDate'));
+    carSelect = element(by.css('select#field_car'));
     repairSelect = element(by.css('select#field_repair'));
-    querySelect = element(by.css('select#field_query'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -102,6 +102,22 @@ export class PhotoDialogPage {
         return this.photoDateInput.getAttribute('value');
     };
 
+    carSelectLastOption = function() {
+        this.carSelect.all(by.tagName('option')).last().click();
+    };
+
+    carSelectOption = function(option) {
+        this.carSelect.sendKeys(option);
+    };
+
+    getCarSelect = function() {
+        return this.carSelect;
+    };
+
+    getCarSelectedOption = function() {
+        return this.carSelect.element(by.css('option:checked')).getText();
+    };
+
     repairSelectLastOption = function() {
         this.repairSelect.all(by.tagName('option')).last().click();
     };
@@ -116,22 +132,6 @@ export class PhotoDialogPage {
 
     getRepairSelectedOption = function() {
         return this.repairSelect.element(by.css('option:checked')).getText();
-    };
-
-    querySelectLastOption = function() {
-        this.querySelect.all(by.tagName('option')).last().click();
-    };
-
-    querySelectOption = function(option) {
-        this.querySelect.sendKeys(option);
-    };
-
-    getQuerySelect = function() {
-        return this.querySelect;
-    };
-
-    getQuerySelectedOption = function() {
-        return this.querySelect.element(by.css('option:checked')).getText();
     };
 
     save() {

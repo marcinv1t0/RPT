@@ -14,7 +14,6 @@ export class UserExt implements BaseEntity {
         public userId?: number,
         public senderMessages?: BaseEntity[],
         public cars?: BaseEntity[],
-        public queries?: BaseEntity[],
     ) {
     }
 }

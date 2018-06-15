@@ -12,6 +12,12 @@
             "relationshipName": "owner",
             "otherEntityName": "userExt",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "photo",
+            "otherEntityName": "photo",
+            "otherEntityRelationshipName": "car"
         }
     ],
     "fields": [
@@ -59,6 +65,5 @@
     "dto": "mapstruct",
     "pagination": "no",
     "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "angularJSSuffix": "mySuffix"
+    "jpaMetamodelFiltering": false
 }

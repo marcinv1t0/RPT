@@ -41,10 +41,10 @@ public class Photo implements Serializable {
     private LocalDate photoDate;
 
     @ManyToOne
-    private Repair repair;
+    private Car car;
 
     @ManyToOne
-    private RestorationQuery query;
+    private Repair repair;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -107,6 +107,19 @@ public class Photo implements Serializable {
         this.photoDate = photoDate;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public Photo car(Car car) {
+        this.car = car;
+        return this;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
     public Repair getRepair() {
         return repair;
     }
@@ -118,19 +131,6 @@ public class Photo implements Serializable {
 
     public void setRepair(Repair repair) {
         this.repair = repair;
-    }
-
-    public RestorationQuery getQuery() {
-        return query;
-    }
-
-    public Photo query(RestorationQuery restorationQuery) {
-        this.query = restorationQuery;
-        return this;
-    }
-
-    public void setQuery(RestorationQuery restorationQuery) {
-        this.query = restorationQuery;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
