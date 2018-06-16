@@ -34,7 +34,7 @@
                 <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
-            <button type="button"
+            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
                     [routerLink]="['/', { outlets: { popup: 'restoration-my-suffix/'+ restoration.id + '/edit'} }]"
                     replaceUrl="true"
                     queryParamsHandling="merge"
@@ -54,29 +54,19 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th><span jhiTranslate="global.field.id">ID</span></th>
                             <th><span jhiTranslate="rptApp.repair.name">Name</span></th>
                             <th><span jhiTranslate="rptApp.repair.description">Description</span></th>
-                            <th><span jhiTranslate="rptApp.repair.cost">Cost</span></th>
                             <th><span jhiTranslate="rptApp.repair.startDate">Start Date</span></th>
                             <th><span jhiTranslate="rptApp.repair.finishDate">Finish Date</span></th>
-                            <th><span jhiTranslate="rptApp.repair.restoration">Restoration</span></th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr *ngFor="let repair of repairs ;trackBy: trackIdRep">
-                            <td><a [routerLink]="['../repair-my-suffix', repair.id ]">{{repair.id}}</a></td>
                             <td>{{repair.name}}</td>
                             <td>{{repair.description}}</td>
-                            <td>{{repair.cost}}</td>
                             <td>{{repair.startDate | date:'mediumDate'}}</td>
                             <td>{{repair.finishDate | date:'mediumDate'}}</td>
-                            <td>
-                                <div *ngIf="repair.restorationId">
-                                    <a [routerLink]="['../restoration-my-suffix', repair.restorationId  ]" >{{repair.restorationId}}</a>
-                                </div>
-                            </td>
                             <td class="text-right">
                                 <div class="btn-group flex-btn-group-container">
                                     <button type="submit"

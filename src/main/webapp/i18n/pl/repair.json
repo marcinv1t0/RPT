@@ -16,11 +16,11 @@
             "detail": {
                 "title": "Szczegóły naprawy"
             },
-            "name": "Name",
-            "description": "Description",
-            "cost": "Cost",
-            "startDate": "Start Date",
-            "finishDate": "Finish Date",
+            "name": "Nazwa",
+            "description": "Opis",
+            "cost": "Koszt",
+            "startDate": "Data rozpoczęcia",
+            "finishDate": "Data zakończenia",
             "subtask": "Subtask",
             "photo": "Photo",
             "restoration": "Restoration"
