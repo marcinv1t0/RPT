@@ -9,7 +9,9 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Car } from './car.model';
 import { CarPopupService } from './car-popup.service';
 import { CarService } from './car.service';
-import { UserExt, UserExtService } from '../user-ext';
+import {UserExt, UserExtService} from "../entities/user-ext";
+import {User, UserService} from "../shared";
+
 
 @Component({
     selector: 'jhi-car-dialog',
@@ -19,6 +21,8 @@ export class CarDialogComponent implements OnInit {
 
     car: Car;
     isSaving: boolean;
+    users: User[];
+    user: User;
 
     userexts: UserExt[];
     productionDateDp: any;
@@ -28,14 +32,19 @@ export class CarDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private carService: CarService,
         private userExtService: UserExtService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.user = {};
+        this.users = [];
         this.userExtService.query()
             .subscribe((res: HttpResponse<UserExt[]>) => { this.userexts = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.userService.query()
+            .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -51,6 +60,13 @@ export class CarDialogComponent implements OnInit {
             this.subscribeToSaveResponse(
                 this.carService.create(this.car));
         }
+    }
+
+    getCarOwner(id: number) : User {
+        this.user = this.users.find((x) => {
+            return x.id === id;
+        });
+        return this.user;
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<Car>>) {

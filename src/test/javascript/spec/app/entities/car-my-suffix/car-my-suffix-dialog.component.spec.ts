@@ -6,10 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { CarDialogComponent } from '../../../../../../main/webapp/app/entities/car/car-dialog.component';
-import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
-import { Car } from '../../../../../../main/webapp/app/entities/car/car.model';
 import { UserExtService } from '../../../../../../main/webapp/app/entities/user-ext';
+import {Car, CarDialogComponent, CarService} from '../../../../../../main/webapp/app/car';
 
 describe('Component Tests', () => {
 

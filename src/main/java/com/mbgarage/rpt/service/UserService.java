@@ -112,16 +112,13 @@ public class UserService {
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
         newUser.setLogin(userDTO.getLogin());
-        // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(userDTO.getFirstName());
         newUser.setLastName(userDTO.getLastName());
         newUser.setEmail(userDTO.getEmail());
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
-        // new user is not active
         newUser.setActivated(false);
-        // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         userExt.setPhoneNumber(phoneNumber);
         userExt.setUser(newUser);

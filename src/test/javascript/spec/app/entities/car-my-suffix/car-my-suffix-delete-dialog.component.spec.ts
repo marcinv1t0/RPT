@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { CarDeleteDialogComponent } from '../../../../../../main/webapp/app/entities/car/car-delete-dialog.component';
-import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
+import {CarDeleteDialogComponent, CarService} from '../../../../../../main/webapp/app/car';
+
 
 describe('Component Tests', () => {
 

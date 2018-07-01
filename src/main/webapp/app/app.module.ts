@@ -31,6 +31,7 @@ import {
 } from './layouts';
 
 import {RptRestorationModule} from './restoration/restoration.module';
+import {RptCarModule} from "./car/car.module";
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import {RptRestorationModule} from './restoration/restoration.module';
         RptAccountModule,
         RptEntityModule,
         RptRestorationModule,
+        RptCarModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

@@ -9,8 +9,8 @@ import { RptTestModule } from '../../../test.module';
 import { PhotoDialogComponent } from '../../../../../../main/webapp/app/entities/photo/photo-dialog.component';
 import { PhotoService } from '../../../../../../main/webapp/app/entities/photo/photo.service';
 import { Photo } from '../../../../../../main/webapp/app/entities/photo/photo.model';
-import { CarService } from '../../../../../../main/webapp/app/entities/car';
 import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix';
+import {CarService} from '../../../../../../main/webapp/app/car';
 
 describe('Component Tests', () => {
 

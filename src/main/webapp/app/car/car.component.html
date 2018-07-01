@@ -16,7 +16,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="rptApp.car.make">Make</span></th>
             <th><span jhiTranslate="rptApp.car.model">Model</span></th>
             <th><span jhiTranslate="rptApp.car.vin">Vin</span></th>
@@ -28,17 +27,12 @@
             </thead>
             <tbody>
             <tr *ngFor="let car of cars ;trackBy: trackId">
-                <td><a [routerLink]="['../car', car.id ]">{{car.id}}</a></td>
                 <td>{{car.make}}</td>
                 <td>{{car.model}}</td>
                 <td>{{car.vin}}</td>
                 <td>{{car.productionDate | date:'mediumDate'}}</td>
                 <td>{{car.color}}</td>
-                <td>
-                    <div *ngIf="car.ownerId">
-                        <a [routerLink]="['../user-ext', car.ownerId  ]" >{{car.ownerId}}</a>
-                    </div>
-                </td>
+                <td>{{getCarOwner(car.id).firstName}} {{getCarOwner(car.id).lastName}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

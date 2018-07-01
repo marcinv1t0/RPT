@@ -7,7 +7,7 @@ import { Restoration } from './restoration.model';
 import { RestorationService } from './restoration.service';
 import {Principal, User, UserService} from '../shared';
 import {Car} from './car.model';
-import {CarService} from '../entities/car';
+import {CarService} from '../car';
 
 @Component({
     selector: 'jhi-restorations',
@@ -21,7 +21,6 @@ restorations: Restoration[];
     car: Car;
     users: User[];
     user: User;
-
 
     constructor(
         private restorationService: RestorationService,
@@ -50,6 +49,8 @@ restorations: Restoration[];
         this.registerChangeInRestorations();
         this.car = {};
         this.user = {};
+        this.cars = [];
+        this.users = [];
         this.userService.query()
             .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -71,19 +72,19 @@ restorations: Restoration[];
         );
     }
 
-    getCar(id: number) {
-        this.car = this.cars.find(x => {
+    getCar(id: number) : Car {
+        this.car = this.cars.find((x) => {
             return x.id === id;
         });
         return this.car;
     }
 
-    getCarOwner(id: number) {
-        this.car = this.cars.find(x => {
+    getCarOwner(id: number) : User {
+        this.car = this.cars.find((x) => {
             return x.id === id;
         });
 
-        this.user = this.users.find(x => {
+        this.user = this.users.find((x) => {
             return x.id === this.car.ownerId;
         });
 

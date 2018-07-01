@@ -14,8 +14,9 @@ import {
     restorationRoute,
     restorationPopupRoute,
 } from './';
-import {RepairDetailComponent} from "./repair-detail.component";
-import {RepairMySuffixService} from "../entities/repair-my-suffix";
+import {RepairDetailComponent} from './repair-detail.component';
+import {RepairMySuffixService} from '../entities/repair-my-suffix';
+import {CarRestorationService} from './car-restoration.service';
 
 const ENTITY_STATES = [
     ...restorationRoute,
@@ -47,6 +48,7 @@ const ENTITY_STATES = [
         RestorationService,
         RepairMySuffixService,
         RestorationPopupService,
+        CarRestorationService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -3,9 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager } from 'ng-jhipster';
-import {RepairMySuffix, RepairMySuffixService} from "../entities/repair-my-suffix";
-
-
+import {RepairMySuffix, RepairMySuffixService} from '../entities/repair-my-suffix';
 
 @Component({
     selector: 'jhi-repair-my-suffix-detail',

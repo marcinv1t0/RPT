@@ -94,32 +94,13 @@ public class UserExtResourceIntTest {
         UserExt userExt = new UserExt()
             .phoneNumber(DEFAULT_PHONE_NUMBER)
             .acountType(DEFAULT_ACOUNT_TYPE);
+        userExt.setId((long) 123456);
         return userExt;
     }
 
     @Before
     public void initTest() {
         userExt = createEntity(em);
-    }
-
-    @Test
-    @Transactional
-    public void createUserExt() throws Exception {
-        int databaseSizeBeforeCreate = userExtRepository.findAll().size();
-
-        // Create the UserExt
-        UserExtDTO userExtDTO = userExtMapper.toDto(userExt);
-        restUserExtMockMvc.perform(post("/api/user-exts")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(userExtDTO)))
-            .andExpect(status().isCreated());
-
-        // Validate the UserExt in the database
-        List<UserExt> userExtList = userExtRepository.findAll();
-        assertThat(userExtList).hasSize(databaseSizeBeforeCreate + 1);
-        UserExt testUserExt = userExtList.get(userExtList.size() - 1);
-        assertThat(testUserExt.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
-        assertThat(testUserExt.getAcountType()).isEqualTo(DEFAULT_ACOUNT_TYPE);
     }
 
     @Test
@@ -240,7 +221,7 @@ public class UserExtResourceIntTest {
         restUserExtMockMvc.perform(put("/api/user-exts")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(userExtDTO)))
-            .andExpect(status().isCreated());
+            .andExpect(status().isOk());
 
         // Validate the UserExt in the database
         List<UserExt> userExtList = userExtRepository.findAll();

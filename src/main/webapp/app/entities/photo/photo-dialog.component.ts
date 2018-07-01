@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
@@ -9,8 +9,8 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Photo } from './photo.model';
 import { PhotoPopupService } from './photo-popup.service';
 import { PhotoService } from './photo.service';
-import { Car, CarService } from '../car';
 import { RepairMySuffix, RepairMySuffixService } from '../repair-my-suffix';
+ import {Car, CarService} from '../../car';
 
 @Component({
     selector: 'jhi-photo-dialog',

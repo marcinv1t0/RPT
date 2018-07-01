@@ -6,12 +6,12 @@ import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { Restoration } from './restoration.model';
+import {CarRestoration} from './car-restoration.model';
 import { Car } from './car.model';
 import { RestorationPopupService } from './restoration-popup.service';
-import { RestorationService } from './restoration.service';
-import {CarService} from '../entities/car';
+import {CarService} from '../car';
 import { User, UserService } from '../shared';
+import {CarRestorationService} from './car-restoration.service';
 
 @Component({
     selector: 'jhi-restoration-my-suffix-dialog',
@@ -19,8 +19,7 @@ import { User, UserService } from '../shared';
 })
 export class RestorationDialogComponent implements OnInit {
 
-    restoration: Restoration;
-    car: Car;
+    carRes: CarRestoration;
 
     isSaving: boolean;
 
@@ -32,7 +31,7 @@ export class RestorationDialogComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
-        private restorationService: RestorationService,
+        private restorationService: CarRestorationService,
         private carService: CarService,
         private userService: UserService,
         private eventManager: JhiEventManager
@@ -41,7 +40,7 @@ export class RestorationDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.car = {};
+        this.carRes = {};
         this.carService.query()
             .subscribe((res: HttpResponse<Car[]>) => { this.cars = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.userService.query()
@@ -54,21 +53,21 @@ export class RestorationDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.restoration.id !== undefined) {
+        if (this.carRes.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.restorationService.update(this.restoration));
+                this.restorationService.update(this.carRes));
         } else {
             this.subscribeToSaveResponse(
-                this.restorationService.create(this.restoration));
+                this.restorationService.create(this.carRes));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<Restoration>>) {
-        result.subscribe((res: HttpResponse<Restoration>) =>
+    private subscribeToSaveResponse(result: Observable<HttpResponse<CarRestoration>>) {
+        result.subscribe((res: HttpResponse<CarRestoration>) =>
             this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: Restoration) {
+    private onSaveSuccess(result: CarRestoration) {
         this.eventManager.broadcast({ name: 'restorationListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { UserRouteAccessService } from '../../shared';
+import { UserRouteAccessService } from '../shared';
 import { CarComponent } from './car.component';
 import { CarDetailComponent } from './car-detail.component';
 import { CarPopupComponent } from './car-dialog.component';
@@ -8,7 +8,7 @@ import { CarDeletePopupComponent } from './car-delete-dialog.component';
 
 export const carRoute: Routes = [
     {
-        path: 'car',
+        path: 'cars',
         component: CarComponent,
         data: {
             authorities: ['ROLE_USER'],

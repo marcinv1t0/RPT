@@ -6,7 +6,7 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { RepairMySuffix } from './repair-my-suffix.model';
 import { RepairMySuffixService } from './repair-my-suffix.service';
-import {Photo, PhotoService} from "../photo";
+import {Photo, PhotoService} from '../photo';
 
 @Component({
     selector: 'jhi-repair-my-suffix-detail',
@@ -43,7 +43,7 @@ export class RepairMySuffixDetailComponent implements OnInit, OnDestroy {
             (res: HttpResponse<Photo[]>) => {
                 this.photos = res.body;
             });
-        this.photos = this.photos.filter(x => x.repairId === this.id)
+        this.photos = this.photos.filter((x) => x.repairId === this.id);
 
     }
 

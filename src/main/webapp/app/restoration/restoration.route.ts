@@ -5,7 +5,7 @@ import { RestorationComponent } from './restoration.component';
 import { RestorationDetailComponent } from './restoration-detail.component';
 import { RestorationPopupComponent } from './restoration-dialog.component';
 import { RestorationDeletePopupComponent } from './restoration-delete-dialog.component';
-import {RepairMySuffixDetailComponent} from "../entities/repair-my-suffix/repair-my-suffix-detail.component";
+import {RepairMySuffixDetailComponent} from '../entities/repair-my-suffix/repair-my-suffix-detail.component';
 
 export const restorationRoute: Routes = [
     {

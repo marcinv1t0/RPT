@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { RptSharedModule } from '../../shared';
+import { RptSharedModule } from '../shared';
 import {
     CarService,
     CarPopupService,

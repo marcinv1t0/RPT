@@ -83,7 +83,7 @@
             <label class="form-control-label" jhiTranslate="rptApp.car.owner" for="field_owner">Owner</label>
             <select class="form-control" id="field_owner" name="owner" [(ngModel)]="car.ownerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="userExtOption.id" *ngFor="let userExtOption of userexts; trackBy: trackUserExtById">{{userExtOption.id}}</option>
+                <option [ngValue]="userExtOption.id" *ngFor="let userExtOption of userexts; trackBy: trackUserExtById">{{getCarOwner(userExtOption.id).firstName}} {{getCarOwner(userExtOption.id).lastName}}</option>
             </select>
         </div>
     </div>

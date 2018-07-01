@@ -12,15 +12,10 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group" [hidden]="!car.id">
-                    <label for="carid" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="carid" name="carid"
-                           [(ngModel)]="car.id" readonly />
-                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rptApp.car.make" for="field_make">Make</label>
                     <input type="text" class="form-control" name="make" id="field_make"
-                           [(ngModel)]="car.make" required maxlength="20"/>
+                           [(ngModel)]="carRes.make" required maxlength="20"/>
                     <div [hidden]="!(editForm.controls.make?.dirty && editForm.controls.make?.invalid)">
                         <small class="form-text text-danger"
                                [hidden]="!editForm.controls.make?.errors?.required" jhiTranslate="entity.validation.required">
@@ -35,7 +30,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rptApp.car.model" for="field_model">Model</label>
                     <input type="text" class="form-control" name="model" id="field_model"
-                           [(ngModel)]="car.model" required maxlength="20"/>
+                           [(ngModel)]="carRes.model" required maxlength="20"/>
                     <div [hidden]="!(editForm.controls.model?.dirty && editForm.controls.model?.invalid)">
                         <small class="form-text text-danger"
                                [hidden]="!editForm.controls.model?.errors?.required" jhiTranslate="entity.validation.required">
@@ -50,14 +45,14 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rptApp.car.vin" for="field_vin">Vin</label>
                     <input type="text" class="form-control" name="vin" id="field_vin"
-                           [(ngModel)]="car.vin" />
+                           [(ngModel)]="carRes.vin" />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rptApp.car.productionDate" for="field_productionDate">Production Date</label>
                     <div class="input-group">
-                        <input id="field_productionDate" type="text" class="form-control" name="productionDate" ngbDatepicker  #productionDateDp="ngbDatepicker" [(ngModel)]="car.productionDate"
+                        <input id="field_productionDate" type="text" class="form-control" name="productionDate" ngbDatepicker  #productionDateDp="ngbDatepicker" [(ngModel)]="carRes.productionDate"
                                required/>
                         <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="productionDateDp.toggle()"><i class="fa fa-calendar"></i></button>
@@ -73,7 +68,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rptApp.car.color" for="field_color">Color</label>
                     <input type="text" class="form-control" name="color" id="field_color"
-                           [(ngModel)]="car.color" required maxlength="15"/>
+                           [(ngModel)]="carRes.color" required maxlength="15"/>
                     <div [hidden]="!(editForm.controls.color?.dirty && editForm.controls.color?.invalid)">
                         <small class="form-text text-danger"
                                [hidden]="!editForm.controls.color?.errors?.required" jhiTranslate="entity.validation.required">
@@ -87,7 +82,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rptApp.car.owner" for="field_owner">Owner</label>
-                    <select class="form-control" id="field_owner" name="owner" [(ngModel)]="car.ownerId" >
+                    <select class="form-control" id="field_owner" name="owner" [(ngModel)]="carRes.ownerId" >
                         <option [ngValue]="null"></option>
                         <option [ngValue]="userExtOption.id"  *ngFor="let userExtOption of users; trackBy: trackUserExtById">{{userExtOption.firstName}} {{userExtOption.lastName}}</option>
                     </select>
@@ -99,15 +94,10 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group" [hidden]="!restoration.id">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                           [(ngModel)]="restoration.id" readonly />
-                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rptApp.restoration.startDate" for="field_startDate">Start Date</label>
                     <div class="input-group">
-                        <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="restoration.startDate"
+                        <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="carRes.startDate"
                                required/>
                         <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
@@ -125,7 +115,7 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="rptApp.restoration.finishDate" for="field_finishDate">Finish Date</label>
                     <div class="input-group">
-                        <input id="field_finishDate" type="text" class="form-control" name="finishDate" ngbDatepicker  #finishDateDp="ngbDatepicker" [(ngModel)]="restoration.finishDate"
+                        <input id="field_finishDate" type="text" class="form-control" name="finishDate" ngbDatepicker  #finishDateDp="ngbDatepicker" [(ngModel)]="carRes.finishDate"
                         />
                         <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="finishDateDp.toggle()"><i class="fa fa-calendar"></i></button>

@@ -6,11 +6,11 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { Restoration } from './restoration.model';
 import { RestorationService } from './restoration.service';
-import {Car} from "./car.model";
-import {User, UserService} from "../shared";
-import {CarService} from "../entities/car";
-import {RepairMySuffixService} from "../entities/repair-my-suffix/repair-my-suffix.service";
-import {RepairMySuffix} from "../entities/repair-my-suffix/repair-my-suffix.model";
+import {Car} from './car.model';
+import {User, UserService} from '../shared';
+import {RepairMySuffixService} from '../entities/repair-my-suffix';
+import {RepairMySuffix} from '../entities/repair-my-suffix';
+import {CarService} from '../car';
 
 @Component({
     selector: 'jhi-restoration-my-suffix-detail',
@@ -57,7 +57,7 @@ export class RestorationDetailComponent implements OnInit, OnDestroy {
             (res: HttpResponse<RepairMySuffix[]>) => {
                 this.repairs = res.body;
             });
-        this.repairs = this.repairs.filter(x => x.restorationId === this.restoration.id)
+        this.repairs = this.repairs.filter((x) => x.restorationId === this.restoration.id);
     }
 
     trackIdRep(index: number, item: RepairMySuffix) {
@@ -65,7 +65,7 @@ export class RestorationDetailComponent implements OnInit, OnDestroy {
     }
 
     getCar(id: number) {
-        this.car = this.cars.find(x => {
+        this.car = this.cars.find((x) => {
             return x.id === id;
         });
         return this.car;
@@ -79,11 +79,11 @@ export class RestorationDetailComponent implements OnInit, OnDestroy {
     }
 
     getCarOwner(id: number) {
-        this.car = this.cars.find(x => {
+        this.car = this.cars.find((x) => {
             return x.id === id;
         });
 
-        this.user = this.users.find(x => {
+        this.user = this.users.find((x) => {
             return x.id === this.car.ownerId;
         });
 

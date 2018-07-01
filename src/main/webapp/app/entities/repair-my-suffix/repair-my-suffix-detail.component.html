@@ -1,6 +1,14 @@
 
 <div *ngIf="repair">
-    <h2><span jhiTranslate="rptApp.repair.detail.title">Repair details</span></h2>
+    <h2><span jhiTranslate="rptApp.repair.detail.title">Repair details</span>
+        <button class="btn btn-primary float-right jh-create-entity create-repair-my-suffix" [routerLink]="['/', { outlets: { popup: ['repair-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="rptApp.repair.home.createPhoto">
+            Add Photo
+            </span>
+        </button></h2>
+
+
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <div class="row">

@@ -66,18 +66,15 @@ public class AccountResource {
         if (!checkPasswordLength(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
-        userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
-        userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
-        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword(), managedUserVM.getPhoneNumber());
+        userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
+            .ifPresent(u -> {throw new LoginAlreadyUsedException();});
+        userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail())
+            .ifPresent(u -> {throw new EmailAlreadyUsedException();});
+        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword(),
+            managedUserVM.getPhoneNumber());
         mailService.sendActivationEmail(user);
     }
 
-    /**
-     * GET  /activate : activate the registered user.
-     *
-     * @param key the activation key
-     * @throws RuntimeException 500 (Internal Server Error) if the user couldn't be activated
-     */
     @GetMapping("/activate")
     @Timed
     public void activateAccount(@RequestParam(value = "key") String key) {
@@ -87,12 +84,6 @@ public class AccountResource {
         }
     }
 
-    /**
-     * GET  /authenticate : check if the user is authenticated, and return its login.
-     *
-     * @param request the HTTP request
-     * @return the login if the user is authenticated
-     */
     @GetMapping("/authenticate")
     @Timed
     public String isAuthenticated(HttpServletRequest request) {
@@ -100,12 +91,6 @@ public class AccountResource {
         return request.getRemoteUser();
     }
 
-    /**
-     * GET  /account : get the current user.
-     *
-     * @return the current user
-     * @throws RuntimeException 500 (Internal Server Error) if the user couldn't be returned
-     */
     @GetMapping("/account")
     @Timed
     public UserDTO getAccount() {

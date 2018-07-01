@@ -132,11 +132,10 @@ public class AccountResourceIntTest {
 
         User user = new User();
         user.setLogin("test");
-        user.setFirstName("john");
-        user.setLastName("doe");
-        user.setEmail("john.doe@jhipster.com");
-        user.setImageUrl("http://placehold.it/50x50");
-        user.setLangKey("en");
+        user.setFirstName("jan");
+        user.setLastName("kowalski");
+        user.setEmail("kowalski@gmail.com");
+        user.setLangKey("pl");
         user.setAuthorities(authorities);
         when(mockUserService.getUserWithAuthorities()).thenReturn(Optional.of(user));
 
@@ -145,11 +144,10 @@ public class AccountResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.login").value("test"))
-            .andExpect(jsonPath("$.firstName").value("john"))
-            .andExpect(jsonPath("$.lastName").value("doe"))
-            .andExpect(jsonPath("$.email").value("john.doe@jhipster.com"))
-            .andExpect(jsonPath("$.imageUrl").value("http://placehold.it/50x50"))
-            .andExpect(jsonPath("$.langKey").value("en"))
+            .andExpect(jsonPath("$.firstName").value("jan"))
+            .andExpect(jsonPath("$.lastName").value("kowalski"))
+            .andExpect(jsonPath("$.email").value("kowalski@gmail.com"))
+            .andExpect(jsonPath("$.langKey").value("pl"))
             .andExpect(jsonPath("$.authorities").value(AuthoritiesConstants.ADMIN));
     }
 
@@ -166,16 +164,15 @@ public class AccountResourceIntTest {
     @Transactional
     public void testRegisterValid() throws Exception {
         ManagedUserVM validUser = new ManagedUserVM();
-        validUser.setLogin("joe");
+        validUser.setLogin("jan");
         validUser.setPassword("password");
-        validUser.setFirstName("Joe");
-        validUser.setLastName("Shmoe");
-        validUser.setEmail("joe@example.com");
+        validUser.setFirstName("jan");
+        validUser.setLastName("kowalski");
+        validUser.setEmail("jan@gmail.com");
         validUser.setActivated(true);
-        validUser.setImageUrl("http://placehold.it/50x50");
         validUser.setLangKey(Constants.DEFAULT_LANGUAGE);
         validUser.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
-        assertThat(userRepository.findOneByLogin("joe").isPresent()).isFalse();
+        assertThat(userRepository.findOneByLogin("jan").isPresent()).isFalse();
 
         restMvc.perform(
             post("/api/register")
@@ -183,14 +180,14 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(validUser)))
             .andExpect(status().isCreated());
 
-        assertThat(userRepository.findOneByLogin("joe").isPresent()).isTrue();
+        assertThat(userRepository.findOneByLogin("jan").isPresent()).isTrue();
     }
 
     @Test
     @Transactional
     public void testRegisterInvalidLogin() throws Exception {
         ManagedUserVM invalidUser = new ManagedUserVM();
-        invalidUser.setLogin("funky-log!n");// <-- invalid
+        invalidUser.setLogin("funky-log!n");
         invalidUser.setPassword("password");
         invalidUser.setFirstName("Funky");
         invalidUser.setLastName("One");
@@ -214,13 +211,12 @@ public class AccountResourceIntTest {
     @Transactional
     public void testRegisterInvalidEmail() throws Exception {
         ManagedUserVM invalidUser = new ManagedUserVM();
-        invalidUser.setLogin("bob");
+        invalidUser.setLogin("janek");
         invalidUser.setPassword("password");
-        invalidUser.setFirstName("Bob");
-        invalidUser.setLastName("Green");
-        invalidUser.setEmail("invalid");// <-- invalid
+        invalidUser.setFirstName("jan");
+        invalidUser.setLastName("Kowalski");
+        invalidUser.setEmail("invalid");
         invalidUser.setActivated(true);
-        invalidUser.setImageUrl("http://placehold.it/50x50");
         invalidUser.setLangKey(Constants.DEFAULT_LANGUAGE);
         invalidUser.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
@@ -230,7 +226,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(invalidUser)))
             .andExpect(status().isBadRequest());
 
-        Optional<User> user = userRepository.findOneByLogin("bob");
+        Optional<User> user = userRepository.findOneByLogin("janek");
         assertThat(user.isPresent()).isFalse();
     }
 
@@ -285,27 +281,23 @@ public class AccountResourceIntTest {
     @Test
     @Transactional
     public void testRegisterDuplicateLogin() throws Exception {
-        // Good
         ManagedUserVM validUser = new ManagedUserVM();
-        validUser.setLogin("alice");
+        validUser.setLogin("tester");
         validUser.setPassword("password");
-        validUser.setFirstName("Alice");
-        validUser.setLastName("Something");
-        validUser.setEmail("alice@example.com");
+        validUser.setFirstName("Jan");
+        validUser.setLastName("Kowalski");
+        validUser.setEmail("jan@example.com");
         validUser.setActivated(true);
-        validUser.setImageUrl("http://placehold.it/50x50");
         validUser.setLangKey(Constants.DEFAULT_LANGUAGE);
         validUser.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
 
-        // Duplicate login, different email
         ManagedUserVM duplicatedUser = new ManagedUserVM();
         duplicatedUser.setLogin(validUser.getLogin());
         duplicatedUser.setPassword(validUser.getPassword());
         duplicatedUser.setFirstName(validUser.getFirstName());
         duplicatedUser.setLastName(validUser.getLastName());
-        duplicatedUser.setEmail("alicejr@example.com");
+        duplicatedUser.setEmail("kowalski@example.com");
         duplicatedUser.setActivated(validUser.isActivated());
-        duplicatedUser.setImageUrl(validUser.getImageUrl());
         duplicatedUser.setLangKey(validUser.getLangKey());
         duplicatedUser.setCreatedBy(validUser.getCreatedBy());
         duplicatedUser.setCreatedDate(validUser.getCreatedDate());
@@ -313,21 +305,19 @@ public class AccountResourceIntTest {
         duplicatedUser.setLastModifiedDate(validUser.getLastModifiedDate());
         duplicatedUser.setAuthorities(new HashSet<>(validUser.getAuthorities()));
 
-        // Good user
         restMvc.perform(
             post("/api/register")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(validUser)))
             .andExpect(status().isCreated());
 
-        // Duplicate login
         restMvc.perform(
             post("/api/register")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(duplicatedUser)))
             .andExpect(status().is4xxClientError());
 
-        Optional<User> userDup = userRepository.findOneByEmailIgnoreCase("alicejr@example.com");
+        Optional<User> userDup = userRepository.findOneByEmailIgnoreCase("kowalski@example.com");
         assertThat(userDup.isPresent()).isFalse();
     }
 

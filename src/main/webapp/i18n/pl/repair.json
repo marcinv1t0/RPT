@@ -5,6 +5,7 @@
             "home": {
                 "title": "Naprawy",
                 "createLabel": "Dodaj czynność",
+                "createPhoto": "Dodaj zdjęcie",
                 "createOrEditLabel": "Dodaj lub edytuj czynność"
             },
             "created": "Utworzono nowy Repair z identyfikatorem {{ param }}",

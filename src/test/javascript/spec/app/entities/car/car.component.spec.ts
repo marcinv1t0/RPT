@@ -4,9 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { RptTestModule } from '../../../test.module';
-import { CarComponent } from '../../../../../../main/webapp/app/entities/car/car.component';
-import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
-import { Car } from '../../../../../../main/webapp/app/entities/car/car.model';
+import {Car, CarComponent, CarService} from "../../../../../../main/webapp/app/car";
+
 
 describe('Component Tests', () => {
 

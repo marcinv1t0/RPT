@@ -3,27 +3,27 @@
     "rptApp": {
         "car" : {
             "home": {
-                "title": "Cars",
-                "createLabel": "Dodaj Car",
-                "createOrEditLabel": "Dodaj lub edytuj: Car"
+                "title": "Pojazdy",
+                "createLabel": "Dodaj pojazd",
+                "createOrEditLabel": "Dodaj lub edytuj pojazd"
             },
-            "created": "Utworzono nowy Car z identyfikatorem {{ param }}",
-            "updated": "Uaktualniono Car z identyfikatorem {{ param }}",
-            "deleted": "Usunięto Car z identyfikatorem {{ param }}",
+            "created": "Utworzono nowy pojazd z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono pojazd z identyfikatorem {{ param }}",
+            "deleted": "Usunięto pojazd z identyfikatorem {{ param }}",
             "delete": {
-                "question": "Czy na pewno chcesz usunąć Car {{ id }}?"
+                "question": "Czy na pewno chcesz usunąć pojazd {{ id }}?"
             },
             "detail": {
                 "title": "Car"
             },
-            "make": "Make",
+            "make": "Marka",
             "model": "Model",
             "vin": "Vin",
-            "productionDate": "Production Date",
-            "color": "Color",
-            "restoration": "Restoration",
+            "productionDate": "Data produkcji",
+            "color": "Kolor",
+            "restoration": "Projekt",
             "owner": "Właściciel",
-            "photo": "Photo"
+            "photo": "Zdjęcie"
         }
     }
 }

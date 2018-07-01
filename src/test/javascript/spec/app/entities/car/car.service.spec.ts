@@ -3,7 +3,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { CarService } from '../../../../../../main/webapp/app/entities/car/car.service';
+import { CarService } from '../../../../../../main/webapp/app/car/car.service';
 import { SERVER_API_URL } from '../../../../../../main/webapp/app/app.constants';
 
 describe('Service Tests', () => {

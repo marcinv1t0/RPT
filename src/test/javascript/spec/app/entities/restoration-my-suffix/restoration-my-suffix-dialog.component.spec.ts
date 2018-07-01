@@ -6,10 +6,10 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { RestorationMySuffixDialogComponent } from '../../../../../../main/webapp/app/entities/restoration-my-suffix/restoration-my-suffix-dialog.component';
-import { RestorationMySuffixService } from '../../../../../../main/webapp/app/entities/restoration-my-suffix/restoration-my-suffix.service';
-import { RestorationMySuffix } from '../../../../../../main/webapp/app/entities/restoration-my-suffix/restoration-my-suffix.model';
-import { CarService } from '../../../../../../main/webapp/app/entities/car';
+import { RestorationMySuffixDialogComponent } from '../../../../../../main/webapp/app/entities/restoration-my-suffix';
+import { RestorationMySuffixService } from '../../../../../../main/webapp/app/entities/restoration-my-suffix';
+import { RestorationMySuffix } from '../../../../../../main/webapp/app/entities/restoration-my-suffix';
+import {CarService} from '../../../../../../main/webapp/app/car';
 
 describe('Component Tests', () => {
 

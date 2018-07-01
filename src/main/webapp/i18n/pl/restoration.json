@@ -11,20 +11,20 @@
                 "carLabel": "Dane pojazdu",
                 "resLabel": "Dane naprawy"
             },
-            "created": "Utworzono nowy Restoration z identyfikatorem {{ param }}",
-            "updated": "Uaktualniono Restoration z identyfikatorem {{ param }}",
-            "deleted": "Usunięto Restoration z identyfikatorem {{ param }}",
+            "created": "Utworzono nowy projekt z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono projekt z identyfikatorem {{ param }}",
+            "deleted": "Usunięto projekt z identyfikatorem {{ param }}",
             "delete": {
-                "question": "Czy na pewno chcesz usunąć Restoration {{ id }}?"
+                "question": "Czy na pewno chcesz usunąć projekt {{ id }}?"
             },
             "detail": {
                 "title": "Projekt nr"
             },
-            "startDate": "Start Date",
-            "finishDate": "Finish Date",
-            "cost": "Cost",
-            "repair": "Repair",
-            "car": "Car"
+            "startDate": "Data rozpoczęcia",
+            "finishDate": "Data zakończenia",
+            "cost": "Koszt",
+            "repair": "Naprawa",
+            "car": "Pojazd"
         }
     }
 }
