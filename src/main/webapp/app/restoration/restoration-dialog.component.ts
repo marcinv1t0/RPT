@@ -6,12 +6,11 @@ import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import {CarRestoration} from './car-restoration.model';
-import { Car } from './car.model';
+import { Restoration } from './restoration.model';
 import { RestorationPopupService } from './restoration-popup.service';
-import {CarService} from '../car';
-import { User, UserService } from '../shared';
-import {CarRestorationService} from './car-restoration.service';
+import { RestorationService } from './restoration.service';
+import { Car, CarService } from '../car';
+import {User, UserService} from "../shared";
 
 @Component({
     selector: 'jhi-restoration-my-suffix-dialog',
@@ -19,19 +18,20 @@ import {CarRestorationService} from './car-restoration.service';
 })
 export class RestorationDialogComponent implements OnInit {
 
-    carRes: CarRestoration;
-
+    restoration: Restoration;
     isSaving: boolean;
 
     cars: Car[];
-    users: User[];
     startDateDp: any;
     finishDateDp: any;
+    car: Car;
+    users: User[];
+    user: User;
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
-        private restorationService: CarRestorationService,
+        private restorationService: RestorationService,
         private carService: CarService,
         private userService: UserService,
         private eventManager: JhiEventManager
@@ -40,11 +40,11 @@ export class RestorationDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.carRes = {};
         this.carService.query()
             .subscribe((res: HttpResponse<Car[]>) => { this.cars = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.userService.query()
             .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+
     }
 
     clear() {
@@ -53,24 +53,36 @@ export class RestorationDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.carRes.id !== undefined) {
+        if (this.restoration.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.restorationService.update(this.carRes));
+                this.restorationService.update(this.restoration));
         } else {
             this.subscribeToSaveResponse(
-                this.restorationService.create(this.carRes));
+                this.restorationService.create(this.restoration));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<CarRestoration>>) {
-        result.subscribe((res: HttpResponse<CarRestoration>) =>
+    private subscribeToSaveResponse(result: Observable<HttpResponse<Restoration>>) {
+        result.subscribe((res: HttpResponse<Restoration>) =>
             this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: CarRestoration) {
+    private onSaveSuccess(result: Restoration) {
         this.eventManager.broadcast({ name: 'restorationListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
+    }
+
+    getCarOwner(id: number) : User {
+        this.car = this.cars.find((x) => {
+            return x.id === id;
+        });
+
+        this.user = this.users.find((x) => {
+            return x.id === this.car.ownerId;
+        });
+
+        return this.user;
     }
 
     private onSaveError() {
@@ -110,6 +122,7 @@ export class RestorationPopupComponent implements OnInit, OnDestroy {
             }
         });
     }
+
 
     ngOnDestroy() {
         this.routeSub.unsubscribe();

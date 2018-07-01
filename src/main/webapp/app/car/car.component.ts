@@ -13,10 +13,11 @@ import {User} from "../shared";
     templateUrl: './car.component.html'
 })
 export class CarComponent implements OnInit, OnDestroy {
-cars: Car[];
+
     currentAccount: any;
     eventSubscriber: Subscription;
     car: Car;
+    cars: Car[];
     users: User[];
     user: User;
 

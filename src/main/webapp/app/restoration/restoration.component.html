@@ -49,7 +49,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'restoratios/'+ restoration.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'restorations/'+ restoration.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

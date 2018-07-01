@@ -1,128 +1,55 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myRestorationLabel" jhiTranslate="rptApp.restoration.home.createLabel">Create Restoration</h4>
+        <h4 class="modal-title" id="myRestorationLabel" jhiTranslate="rptApp.restoration.home.createOrEditLabel">Create or edit a Restoration</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="modal-header">
-            <h4 class="modal-title" id="carLabel" jhiTranslate="rptApp.restoration.creation.carLabel">Car Data</h4>
+        <div class="form-group" [hidden]="!restoration.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="restoration.id" readonly />
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rptApp.car.make" for="field_make">Make</label>
-                    <input type="text" class="form-control" name="make" id="field_make"
-                           [(ngModel)]="carRes.make" required maxlength="20"/>
-                    <div [hidden]="!(editForm.controls.make?.dirty && editForm.controls.make?.invalid)">
-                        <small class="form-text text-danger"
-                               [hidden]="!editForm.controls.make?.errors?.required" jhiTranslate="entity.validation.required">
-                            This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                               [hidden]="!editForm.controls.make?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
-                            This field cannot be longer than 20 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rptApp.car.model" for="field_model">Model</label>
-                    <input type="text" class="form-control" name="model" id="field_model"
-                           [(ngModel)]="carRes.model" required maxlength="20"/>
-                    <div [hidden]="!(editForm.controls.model?.dirty && editForm.controls.model?.invalid)">
-                        <small class="form-text text-danger"
-                               [hidden]="!editForm.controls.model?.errors?.required" jhiTranslate="entity.validation.required">
-                            This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                               [hidden]="!editForm.controls.model?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
-                            This field cannot be longer than 20 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rptApp.car.vin" for="field_vin">Vin</label>
-                    <input type="text" class="form-control" name="vin" id="field_vin"
-                           [(ngModel)]="carRes.vin" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rptApp.car.productionDate" for="field_productionDate">Production Date</label>
-                    <div class="input-group">
-                        <input id="field_productionDate" type="text" class="form-control" name="productionDate" ngbDatepicker  #productionDateDp="ngbDatepicker" [(ngModel)]="carRes.productionDate"
-                               required/>
-                        <span class="input-group-append">
-                    <button type="button" class="btn btn-secondary" (click)="productionDateDp.toggle()"><i class="fa fa-calendar"></i></button>
-                </span>
-                    </div>
-                    <div [hidden]="!(editForm.controls.productionDate?.dirty && editForm.controls.productionDate?.invalid)">
-                        <small class="form-text text-danger"
-                               [hidden]="!editForm.controls.productionDate?.errors?.required" jhiTranslate="entity.validation.required">
-                            This field is required.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rptApp.car.color" for="field_color">Color</label>
-                    <input type="text" class="form-control" name="color" id="field_color"
-                           [(ngModel)]="carRes.color" required maxlength="15"/>
-                    <div [hidden]="!(editForm.controls.color?.dirty && editForm.controls.color?.invalid)">
-                        <small class="form-text text-danger"
-                               [hidden]="!editForm.controls.color?.errors?.required" jhiTranslate="entity.validation.required">
-                            This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                               [hidden]="!editForm.controls.color?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 15 }">
-                            This field cannot be longer than 15 characters.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rptApp.car.owner" for="field_owner">Owner</label>
-                    <select class="form-control" id="field_owner" name="owner" [(ngModel)]="carRes.ownerId" >
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userExtOption.id"  *ngFor="let userExtOption of users; trackBy: trackUserExtById">{{userExtOption.firstName}} {{userExtOption.lastName}}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="modal-header">
-            <h4 class="modal-title" id="resLabel" jhiTranslate="rptApp.restoration.creation.resLabel">Restoration Data</h4>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rptApp.restoration.startDate" for="field_startDate">Start Date</label>
-                    <div class="input-group">
-                        <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="carRes.startDate"
-                               required/>
-                        <span class="input-group-append">
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="rptApp.restoration.startDate" for="field_startDate">Start Date</label>
+            <div class="input-group">
+                <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="restoration.startDate"
+                required/>
+                <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
-                    </div>
-                    <div [hidden]="!(editForm.controls.startDate?.dirty && editForm.controls.startDate?.invalid)">
-                        <small class="form-text text-danger"
-                               [hidden]="!editForm.controls.startDate?.errors?.required" jhiTranslate="entity.validation.required">
-                            This field is required.
-                        </small>
-                    </div>
-                </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="rptApp.restoration.finishDate" for="field_finishDate">Finish Date</label>
-                    <div class="input-group">
-                        <input id="field_finishDate" type="text" class="form-control" name="finishDate" ngbDatepicker  #finishDateDp="ngbDatepicker" [(ngModel)]="carRes.finishDate"
-                        />
-                        <span class="input-group-append">
+            <div [hidden]="!(editForm.controls.startDate?.dirty && editForm.controls.startDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.startDate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="rptApp.restoration.finishDate" for="field_finishDate">Finish Date</label>
+            <div class="input-group">
+                <input id="field_finishDate" type="text" class="form-control" name="finishDate" ngbDatepicker  #finishDateDp="ngbDatepicker" [(ngModel)]="restoration.finishDate"
+                />
+                <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="finishDateDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
-                    </div>
-                </div>
             </div>
+        </div>
+        <!--<div class="form-group">
+            <label class="form-control-label" jhiTranslate="rptApp.restoration.cost" for="field_cost">Cost</label>
+            <input type="number" class="form-control" name="cost" id="field_cost"
+                [(ngModel)]="restoration.cost" />
+        </div>-->
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="rptApp.restoration.car" for="field_car">Car</label>
+            <select class="form-control" id="field_car" name="car" [(ngModel)]="restoration.carId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="carOption.id" *ngFor="let carOption of cars; trackBy: trackCarById">{{carOption.make}} {{carOption.make}} | {{carOption.id}} | {{getCarOwner(carOption.id).lastName}}</option>
+            </select>
         </div>
     </div>
     <div class="modal-footer">
