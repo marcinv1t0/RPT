@@ -14,8 +14,7 @@ import {
     restorationRoute,
     restorationPopupRoute,
 } from './';
-import {RepairDetailComponent} from './repair-detail.component';
-import {RepairMySuffixService} from '../entities/repair-my-suffix';
+import {RepairService} from '../entities/repair';
 import {CarRestorationService} from './car-restoration.service';
 
 const ENTITY_STATES = [
@@ -34,8 +33,7 @@ const ENTITY_STATES = [
         RestorationDialogComponent,
         RestorationDeleteDialogComponent,
         RestorationPopupComponent,
-        RestorationDeletePopupComponent,
-        RepairDetailComponent
+        RestorationDeletePopupComponent
     ],
     entryComponents: [
         RestorationComponent,
@@ -46,7 +44,7 @@ const ENTITY_STATES = [
     ],
     providers: [
         RestorationService,
-        RepairMySuffixService,
+        RepairService,
         RestorationPopupService,
         CarRestorationService,
     ],

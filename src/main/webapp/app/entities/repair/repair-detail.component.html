@@ -1,18 +1,11 @@
 
 <div *ngIf="repair">
-    <h2><span jhiTranslate="rptApp.repair.detail.title">Repair details</span>
-        <button class="btn btn-primary float-right jh-create-entity create-repair-my-suffix" [routerLink]="['/', { outlets: { popup: ['repair-my-suffix-new'] } }]">
-            <span class="fa fa-plus"></span>
-            <span  jhiTranslate="rptApp.repair.home.createPhoto">
-            Add Photo
-            </span>
-        </button></h2>
-
+    <h2><span jhiTranslate="rptApp.repair.detail.title">Repair details</span></h2>
 
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="rptApp.repair.name">Name</span></dt>
                 <dd>
@@ -42,7 +35,18 @@
                 </dd>
             </dl>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
+            <h2>
+                <span jhiTranslate="rptApp.photo.home.title">Photos</span>
+                <button *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn btn-primary float-right jh-create-entity create-photo" [routerLink]="['/', { outlets: { popup: ['photo-new'] } }]">
+                    <span class="fa fa-plus"></span>
+                    <span  jhiTranslate="rptApp.photo.home.createLabel">
+            Create new Photo
+            </span>
+                </button>
+            </h2>
+            <br/>
+
             <table>
                 <tr *ngFor="let photo of photos">
                     <td>
@@ -66,6 +70,7 @@
             </table>
         </div>
     </div>
+
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
@@ -73,7 +78,7 @@
     </button>
 
     <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
-            [routerLink]="['/', { outlets: { popup: 'repair-my-suffix/'+ repair.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'repair/'+ repair.id + '/edit'} }]"
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">

@@ -6,37 +6,37 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { RepairMySuffixDialogComponent } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix-dialog.component';
-import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix.service';
-import { RepairMySuffix } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix.model';
+import { RepairDialogComponent } from '../../../../../../main/webapp/app/entities/repair/repair-dialog.component';
+import { RepairService } from '../../../../../../main/webapp/app/entities/repair/repair.service';
+import { Repair } from '../../../../../../main/webapp/app/entities/repair/repair.model';
 import { RestorationMySuffixService } from '../../../../../../main/webapp/app/entities/restoration-my-suffix';
 
 describe('Component Tests', () => {
 
-    describe('RepairMySuffix Management Dialog Component', () => {
-        let comp: RepairMySuffixDialogComponent;
-        let fixture: ComponentFixture<RepairMySuffixDialogComponent>;
-        let service: RepairMySuffixService;
+    describe('Repair Management Dialog Component', () => {
+        let comp: RepairDialogComponent;
+        let fixture: ComponentFixture<RepairDialogComponent>;
+        let service: RepairService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [RepairMySuffixDialogComponent],
+                declarations: [RepairDialogComponent],
                 providers: [
                     RestorationMySuffixService,
-                    RepairMySuffixService
+                    RepairService
                 ]
             })
-            .overrideTemplate(RepairMySuffixDialogComponent, '')
+            .overrideTemplate(RepairDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(RepairMySuffixDialogComponent);
+            fixture = TestBed.createComponent(RepairDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(RepairMySuffixService);
+            service = fixture.debugElement.injector.get(RepairService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });
@@ -46,7 +46,7 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new RepairMySuffix(123);
+                        const entity = new Repair(123);
                         spyOn(service, 'update').and.returnValue(Observable.of(new HttpResponse({body: entity})));
                         comp.repair = entity;
                         // WHEN
@@ -66,7 +66,7 @@ describe('Component Tests', () => {
                 inject([],
                     fakeAsync(() => {
                         // GIVEN
-                        const entity = new RepairMySuffix();
+                        const entity = new Repair();
                         spyOn(service, 'create').and.returnValue(Observable.of(new HttpResponse({body: entity})));
                         comp.repair = entity;
                         // WHEN

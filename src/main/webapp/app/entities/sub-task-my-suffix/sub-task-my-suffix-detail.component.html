@@ -15,7 +15,7 @@
         <dt><span jhiTranslate="rptApp.subTask.repair">Repair</span></dt>
         <dd>
             <div *ngIf="subTask.repairId">
-                <a [routerLink]="['/repair-my-suffix', subTask.repairId]">{{subTask.repairId}}</a>
+                <a [routerLink]="['/repair', subTask.repairId]">{{subTask.repairId}}</a>
             </div>
         </dd>
     </dl>

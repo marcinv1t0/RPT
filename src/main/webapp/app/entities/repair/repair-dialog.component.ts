@@ -6,18 +6,18 @@ import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { RepairMySuffix } from './repair-my-suffix.model';
-import { RepairMySuffixPopupService } from './repair-my-suffix-popup.service';
-import { RepairMySuffixService } from './repair-my-suffix.service';
+import { Repair } from './repair.model';
+import { RepairPopupService } from './repair-popup.service';
+import { RepairService } from './repair.service';
 import { RestorationMySuffix, RestorationMySuffixService } from '../restoration-my-suffix';
 
 @Component({
-    selector: 'jhi-repair-my-suffix-dialog',
-    templateUrl: './repair-my-suffix-dialog.component.html'
+    selector: 'jhi-repair-dialog',
+    templateUrl: './repair-dialog.component.html'
 })
-export class RepairMySuffixDialogComponent implements OnInit {
+export class RepairDialogComponent implements OnInit {
 
-    repair: RepairMySuffix;
+    repair: Repair;
     isSaving: boolean;
 
     restorations: RestorationMySuffix[];
@@ -27,7 +27,7 @@ export class RepairMySuffixDialogComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
-        private repairService: RepairMySuffixService,
+        private repairService: RepairService,
         private restorationService: RestorationMySuffixService,
         private eventManager: JhiEventManager
     ) {
@@ -54,12 +54,12 @@ export class RepairMySuffixDialogComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<RepairMySuffix>>) {
-        result.subscribe((res: HttpResponse<RepairMySuffix>) =>
+    private subscribeToSaveResponse(result: Observable<HttpResponse<Repair>>) {
+        result.subscribe((res: HttpResponse<Repair>) =>
             this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: RepairMySuffix) {
+    private onSaveSuccess(result: Repair) {
         this.eventManager.broadcast({ name: 'repairListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -79,26 +79,26 @@ export class RepairMySuffixDialogComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-repair-my-suffix-popup',
+    selector: 'jhi-repair-popup',
     template: ''
 })
-export class RepairMySuffixPopupComponent implements OnInit, OnDestroy {
+export class RepairPopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private repairPopupService: RepairMySuffixPopupService
+        private repairPopupService: RepairPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.repairPopupService
-                    .open(RepairMySuffixDialogComponent as Component, params['id']);
+                    .open(RepairDialogComponent as Component, params['id']);
             } else {
                 this.repairPopupService
-                    .open(RepairMySuffixDialogComponent as Component);
+                    .open(RepairDialogComponent as Component);
             }
         });
     }

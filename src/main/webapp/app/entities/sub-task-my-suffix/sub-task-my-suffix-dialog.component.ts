@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { SubTaskMySuffix } from './sub-task-my-suffix.model';
 import { SubTaskMySuffixPopupService } from './sub-task-my-suffix-popup.service';
 import { SubTaskMySuffixService } from './sub-task-my-suffix.service';
-import { RepairMySuffix, RepairMySuffixService } from '../repair-my-suffix';
+import { Repair, RepairService } from '../repair';
 
 @Component({
     selector: 'jhi-sub-task-my-suffix-dialog',
@@ -20,13 +20,13 @@ export class SubTaskMySuffixDialogComponent implements OnInit {
     subTask: SubTaskMySuffix;
     isSaving: boolean;
 
-    repairs: RepairMySuffix[];
+    repairs: Repair[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private subTaskService: SubTaskMySuffixService,
-        private repairService: RepairMySuffixService,
+        private repairService: RepairService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -34,7 +34,7 @@ export class SubTaskMySuffixDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.repairService.query()
-            .subscribe((res: HttpResponse<RepairMySuffix[]>) => { this.repairs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<Repair[]>) => { this.repairs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -71,7 +71,7 @@ export class SubTaskMySuffixDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackRepairById(index: number, item: RepairMySuffix) {
+    trackRepairById(index: number, item: Repair) {
         return item.id;
     }
 }

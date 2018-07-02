@@ -5,7 +5,9 @@ import { RestorationComponent } from './restoration.component';
 import { RestorationDetailComponent } from './restoration-detail.component';
 import { RestorationPopupComponent } from './restoration-dialog.component';
 import { RestorationDeletePopupComponent } from './restoration-delete-dialog.component';
-import {RepairMySuffixDetailComponent} from '../entities/repair-my-suffix/repair-my-suffix-detail.component';
+import {RepairDetailComponent} from '../entities/repair/repair-detail.component';
+import {RepairDeletePopupComponent} from '../entities/repair/repair-delete-dialog.component';
+import {RepairPopupComponent} from "../entities/repair";
 
 export const restorationRoute: Routes = [
     {
@@ -26,8 +28,8 @@ export const restorationRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'repair-details/:id',
-        component: RepairMySuffixDetailComponent,
+        path: 'restorations/repair-details/:id',
+        component: RepairDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.repair.home.title'
@@ -37,6 +39,16 @@ export const restorationRoute: Routes = [
 ];
 
 export const restorationPopupRoute: Routes = [
+    {
+        path: 'restorations/:id/new',
+        component: RepairPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'rptApp.repair.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
     {
         path: 'restorations-new',
         component: RestorationPopupComponent,
@@ -53,6 +65,26 @@ export const restorationPopupRoute: Routes = [
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.restoration.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'repair/:id/edit',
+        component: RepairPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'rptApp.repair.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'restorations/repair/:id/delete',
+        component: RepairDeletePopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'rptApp.repair.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

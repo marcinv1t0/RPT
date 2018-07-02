@@ -5,6 +5,7 @@ import com.mbgarage.rpt.RptApp;
 import com.mbgarage.rpt.domain.Restoration;
 import com.mbgarage.rpt.repository.RestorationRepository;
 import com.mbgarage.rpt.service.RestorationService;
+import com.mbgarage.rpt.service.UserService;
 import com.mbgarage.rpt.service.dto.RestorationDTO;
 import com.mbgarage.rpt.service.mapper.RestorationMapper;
 import com.mbgarage.rpt.web.rest.errors.ExceptionTranslator;
@@ -62,6 +63,12 @@ public class RestorationResourceIntTest {
     private RestorationService restorationService;
 
     @Autowired
+    private CarResource carResource;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -80,7 +87,7 @@ public class RestorationResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final RestorationResource restorationResource = new RestorationResource(restorationService);
+        final RestorationResource restorationResource = new RestorationResource(restorationService, userService, carResource);
         this.restRestorationMockMvc = MockMvcBuilders.standaloneSetup(restorationResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

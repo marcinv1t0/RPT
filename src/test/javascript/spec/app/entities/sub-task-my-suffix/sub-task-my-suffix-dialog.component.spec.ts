@@ -9,7 +9,7 @@ import { RptTestModule } from '../../../test.module';
 import { SubTaskMySuffixDialogComponent } from '../../../../../../main/webapp/app/entities/sub-task-my-suffix/sub-task-my-suffix-dialog.component';
 import { SubTaskMySuffixService } from '../../../../../../main/webapp/app/entities/sub-task-my-suffix/sub-task-my-suffix.service';
 import { SubTaskMySuffix } from '../../../../../../main/webapp/app/entities/sub-task-my-suffix/sub-task-my-suffix.model';
-import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix';
+import { RepairService } from '../../../../../../main/webapp/app/entities/repair';
 
 describe('Component Tests', () => {
 
@@ -25,7 +25,7 @@ describe('Component Tests', () => {
                 imports: [RptTestModule],
                 declarations: [SubTaskMySuffixDialogComponent],
                 providers: [
-                    RepairMySuffixService,
+                    RepairService,
                     SubTaskMySuffixService
                 ]
             })

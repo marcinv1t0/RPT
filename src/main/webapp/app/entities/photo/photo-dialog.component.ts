@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Photo } from './photo.model';
 import { PhotoPopupService } from './photo-popup.service';
 import { PhotoService } from './photo.service';
-import { RepairMySuffix, RepairMySuffixService } from '../repair-my-suffix';
+import { Repair, RepairService } from '../repair';
  import {Car, CarService} from '../../car';
 
 @Component({
@@ -23,7 +23,7 @@ export class PhotoDialogComponent implements OnInit {
 
     cars: Car[];
 
-    repairs: RepairMySuffix[];
+    repairs: Repair[];
     photoDateDp: any;
 
     constructor(
@@ -32,7 +32,7 @@ export class PhotoDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private photoService: PhotoService,
         private carService: CarService,
-        private repairService: RepairMySuffixService,
+        private repairService: RepairService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
     ) {
@@ -43,7 +43,7 @@ export class PhotoDialogComponent implements OnInit {
         this.carService.query()
             .subscribe((res: HttpResponse<Car[]>) => { this.cars = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.repairService.query()
-            .subscribe((res: HttpResponse<RepairMySuffix[]>) => { this.repairs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+            .subscribe((res: HttpResponse<Repair[]>) => { this.repairs = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     byteSize(field) {
@@ -100,7 +100,7 @@ export class PhotoDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackRepairById(index: number, item: RepairMySuffix) {
+    trackRepairById(index: number, item: Repair) {
         return item.id;
     }
 }

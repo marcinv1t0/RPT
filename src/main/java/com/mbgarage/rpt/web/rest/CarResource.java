@@ -1,7 +1,9 @@
 package com.mbgarage.rpt.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mbgarage.rpt.domain.User;
 import com.mbgarage.rpt.service.CarService;
+import com.mbgarage.rpt.service.UserService;
 import com.mbgarage.rpt.web.rest.errors.BadRequestAlertException;
 import com.mbgarage.rpt.web.rest.util.HeaderUtil;
 import com.mbgarage.rpt.service.dto.CarDTO;
@@ -17,6 +19,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Car.
@@ -31,8 +34,11 @@ public class CarResource {
 
     private final CarService carService;
 
-    public CarResource(CarService carService) {
+    private final UserService userService;
+
+    public CarResource(CarService carService, UserService userService) {
         this.carService = carService;
+        this.userService = userService;
     }
 
     /**
@@ -86,7 +92,13 @@ public class CarResource {
     @Timed
     public List<CarDTO> getAllCars() {
         log.debug("REST request to get all Cars");
-        return carService.findAll();
+        List<CarDTO> list = carService.findAll();
+        final Optional<User> isUser = userService.getUserWithAuthorities();
+        final User user = isUser.get();
+        if (!user.getLogin().equals("admin")){
+            list = list.stream().filter(c -> c.getOwnerId().equals(user.getId())).collect(Collectors.toList());
+        }
+        return list;
         }
 
     /**

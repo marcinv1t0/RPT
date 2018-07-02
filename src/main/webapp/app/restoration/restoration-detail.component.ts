@@ -8,8 +8,8 @@ import { Restoration } from './restoration.model';
 import { RestorationService } from './restoration.service';
 import {Car} from './car.model';
 import {User, UserService} from '../shared';
-import {RepairMySuffixService} from '../entities/repair-my-suffix';
-import {RepairMySuffix} from '../entities/repair-my-suffix';
+import {RepairService} from '../entities/repair';
+import {Repair} from '../entities/repair';
 import {CarService} from '../car';
 
 @Component({
@@ -21,7 +21,7 @@ export class RestorationDetailComponent implements OnInit, OnDestroy {
     restoration: Restoration;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
-    repairs: RepairMySuffix[];
+    repairs: Repair[];
     cars: Car[];
     car: Car;
     users: User[];
@@ -30,7 +30,7 @@ export class RestorationDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: JhiEventManager,
         private restorationService: RestorationService,
-        private repairService: RepairMySuffixService,
+        private repairService: RepairService,
         private carService: CarService,
         private userService: UserService,
         private route: ActivatedRoute
@@ -46,21 +46,28 @@ export class RestorationDetailComponent implements OnInit, OnDestroy {
             this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
-        this.registerChangeInRestorations();
         this.loadCars();
         this.userService.query()
             .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; });
+        this.registerChangeInRepairs();
+        this.registerChangeInRestorations();
+
+
+    }
+
+    registerChangeInRepairs() {
+        this.eventSubscriber = this.eventManager.subscribe('repairListModification', (response) => this.loadAllRepairs());
     }
 
     loadAllRepairs() {
         this.repairService.query().subscribe(
-            (res: HttpResponse<RepairMySuffix[]>) => {
+            (res: HttpResponse<Repair[]>) => {
                 this.repairs = res.body;
             });
         this.repairs = this.repairs.filter((x) => x.restorationId === this.restoration.id);
     }
 
-    trackIdRep(index: number, item: RepairMySuffix) {
+    trackIdRep(index: number, item: Repair) {
         return item.id;
     }
 

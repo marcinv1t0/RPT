@@ -16,7 +16,7 @@ describe('Repair e2e test', () => {
     });
 
     it('should load Repairs', () => {
-        navBarPage.goToEntity('repair-my-suffix');
+        navBarPage.goToEntity('repair');
         repairComponentsPage = new RepairComponentsPage();
         expect(repairComponentsPage.getTitle())
             .toMatch(/rptApp.repair.home.title/);
@@ -55,7 +55,7 @@ describe('Repair e2e test', () => {
 
 export class RepairComponentsPage {
     createButton = element(by.css('.jh-create-entity'));
-    title = element.all(by.css('jhi-repair-my-suffix div h2 span')).first();
+    title = element.all(by.css('jhi-repair div h2 span')).first();
 
     clickOnCreateButton() {
         return this.createButton.click();

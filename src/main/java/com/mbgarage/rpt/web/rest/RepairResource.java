@@ -1,7 +1,10 @@
 package com.mbgarage.rpt.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mbgarage.rpt.domain.Photo;
+import com.mbgarage.rpt.service.PhotoService;
 import com.mbgarage.rpt.service.RepairService;
+import com.mbgarage.rpt.service.dto.PhotoDTO;
 import com.mbgarage.rpt.web.rest.errors.BadRequestAlertException;
 import com.mbgarage.rpt.web.rest.util.HeaderUtil;
 import com.mbgarage.rpt.service.dto.RepairDTO;
@@ -17,6 +20,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Repair.
@@ -30,9 +34,12 @@ public class RepairResource {
     private static final String ENTITY_NAME = "repair";
 
     private final RepairService repairService;
+    private final PhotoService photoService;
 
-    public RepairResource(RepairService repairService) {
+
+    public RepairResource(RepairService repairService, PhotoService photoService) {
         this.repairService = repairService;
+        this.photoService = photoService;
     }
 
     /**
@@ -113,6 +120,13 @@ public class RepairResource {
     @Timed
     public ResponseEntity<Void> deleteRepair(@PathVariable Long id) {
         log.debug("REST request to delete Repair : {}", id);
+        List<PhotoDTO> photos = photoService.findAll();
+        photos = (List<PhotoDTO>) photos.stream()
+            .filter(p -> p.getRepairId().equals(id))
+            .collect(Collectors.toList());
+        for (PhotoDTO photo : photos) {
+            photoService.delete(photo.getId());
+        }
         repairService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }

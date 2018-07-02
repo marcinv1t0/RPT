@@ -5,9 +5,10 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Restoration } from './restoration.model';
 import { RestorationService } from './restoration.service';
-import {Principal, User, UserService} from '../shared';
+import {AccountService, Principal, User, UserService} from '../shared';
 import {Car} from './car.model';
 import {CarService} from '../car';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
     selector: 'jhi-restorations',
@@ -21,9 +22,15 @@ restorations: Restoration[];
     car: Car;
     users: User[];
     user: User;
+    loggedUser: User;
+    id: any;
+    settingsAccount: any;
+    list: any[];
+
 
     constructor(
         private restorationService: RestorationService,
+        private account: AccountService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private carService: CarService,
@@ -33,26 +40,51 @@ restorations: Restoration[];
     }
 
     loadAll() {
+        this.principal.identity().then((account) => {
+            this.settingsAccount = this.copyAccount(account);
+        });
+        this.userService.query()
+            .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.restorationService.query().subscribe(
             (res: HttpResponse<Restoration[]>) => {
                 this.restorations = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+        /*if (this.settingsAccount.login !== "admin"){
+            this.loggedUser = this.users.find(u => u.login === this.settingsAccount.login);
+            this.cars = this.cars.filter(c => c.ownerId === this.loggedUser.id);
+            this.cars.forEach((item, index) => {
+                this.list.push(item.id);
+            });
+            this.restorations = this.restorations.filter(r => this.list.includes(r.carId));
+        }*/
+
     }
+
+    copyAccount(account) {
+        return {
+            activated: account.activated,
+            email: account.email,
+            firstName: account.firstName,
+            langKey: account.langKey,
+            lastName: account.lastName,
+            login: account.login,
+            imageUrl: account.imageUrl
+        };
+    }
+
     ngOnInit() {
-        this.loadAll();
-        this.loadCars();
-        this.principal.identity().then((account) => {
-            this.currentAccount = account;
-        });
-        this.registerChangeInRestorations();
+        this.settingsAccount = {};
         this.car = {};
         this.user = {};
+        this.loggedUser = {};
         this.cars = [];
         this.users = [];
-        this.userService.query()
-            .subscribe((res: HttpResponse<User[]>) => { this.users = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.loadCars();
+        this.loadAll();
+        this.registerChangeInRestorations();
+
     }
 
     ngOnDestroy() {

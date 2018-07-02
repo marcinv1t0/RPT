@@ -9,7 +9,7 @@ import { RptTestModule } from '../../../test.module';
 import { PhotoDialogComponent } from '../../../../../../main/webapp/app/entities/photo/photo-dialog.component';
 import { PhotoService } from '../../../../../../main/webapp/app/entities/photo/photo.service';
 import { Photo } from '../../../../../../main/webapp/app/entities/photo/photo.model';
-import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix';
+import { RepairService } from '../../../../../../main/webapp/app/entities/repair';
 import {CarService} from '../../../../../../main/webapp/app/car';
 
 describe('Component Tests', () => {
@@ -27,7 +27,7 @@ describe('Component Tests', () => {
                 declarations: [PhotoDialogComponent],
                 providers: [
                     CarService,
-                    RepairMySuffixService,
+                    RepairService,
                     PhotoService
                 ]
             })

@@ -5,34 +5,34 @@ import { Observable } from 'rxjs/Observable';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { RptTestModule } from '../../../test.module';
-import { RepairMySuffixDeleteDialogComponent } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix-delete-dialog.component';
-import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix.service';
+import { RepairDeleteDialogComponent } from '../../../../../../main/webapp/app/entities/repair/repair-delete-dialog.component';
+import { RepairService } from '../../../../../../main/webapp/app/entities/repair/repair.service';
 
 describe('Component Tests', () => {
 
-    describe('RepairMySuffix Management Delete Component', () => {
-        let comp: RepairMySuffixDeleteDialogComponent;
-        let fixture: ComponentFixture<RepairMySuffixDeleteDialogComponent>;
-        let service: RepairMySuffixService;
+    describe('Repair Management Delete Component', () => {
+        let comp: RepairDeleteDialogComponent;
+        let fixture: ComponentFixture<RepairDeleteDialogComponent>;
+        let service: RepairService;
         let mockEventManager: any;
         let mockActiveModal: any;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [RepairMySuffixDeleteDialogComponent],
+                declarations: [RepairDeleteDialogComponent],
                 providers: [
-                    RepairMySuffixService
+                    RepairService
                 ]
             })
-            .overrideTemplate(RepairMySuffixDeleteDialogComponent, '')
+            .overrideTemplate(RepairDeleteDialogComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(RepairMySuffixDeleteDialogComponent);
+            fixture = TestBed.createComponent(RepairDeleteDialogComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(RepairMySuffixService);
+            service = fixture.debugElement.injector.get(RepairService);
             mockEventManager = fixture.debugElement.injector.get(JhiEventManager);
             mockActiveModal = fixture.debugElement.injector.get(NgbActiveModal);
         });

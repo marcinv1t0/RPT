@@ -1,7 +1,10 @@
 package com.mbgarage.rpt.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mbgarage.rpt.domain.User;
 import com.mbgarage.rpt.service.RestorationService;
+import com.mbgarage.rpt.service.UserService;
+import com.mbgarage.rpt.service.dto.CarDTO;
 import com.mbgarage.rpt.web.rest.errors.BadRequestAlertException;
 import com.mbgarage.rpt.web.rest.util.HeaderUtil;
 import com.mbgarage.rpt.service.dto.RestorationDTO;
@@ -15,8 +18,10 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Restoration.
@@ -31,8 +36,14 @@ public class RestorationResource {
 
     private final RestorationService restorationService;
 
-    public RestorationResource(RestorationService restorationService) {
+    private final UserService userService;
+
+    private final CarResource carResource;
+
+    public RestorationResource(RestorationService restorationService, UserService userService, CarResource carResource) {
         this.restorationService = restorationService;
+        this.userService = userService;
+        this.carResource = carResource;
     }
 
     /**
@@ -86,7 +97,21 @@ public class RestorationResource {
     @Timed
     public List<RestorationDTO> getAllRestorations() {
         log.debug("REST request to get all Restorations");
-        return restorationService.findAll();
+        List<RestorationDTO> resList = restorationService.findAll();
+        List<CarDTO> carList = carResource.getAllCars();
+        List<Long> keys = new ArrayList<>();
+        for (CarDTO car: carList) {
+            keys.add(car.getId());
+        }
+
+        final Optional<User> isUser = userService.getUserWithAuthorities();
+        final User user = isUser.get();
+        if (!user.getLogin().equals("admin")){
+            resList = resList.stream()
+                .filter(r -> keys.contains(r.getCarId()))
+                .collect(Collectors.toList());
+        }
+        return resList;
         }
 
     /**

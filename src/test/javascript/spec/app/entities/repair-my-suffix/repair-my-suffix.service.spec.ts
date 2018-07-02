@@ -3,14 +3,14 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix.service';
+import { RepairService } from '../../../../../../main/webapp/app/entities/repair/repair.service';
 import { SERVER_API_URL } from '../../../../../../main/webapp/app/app.constants';
 
 describe('Service Tests', () => {
 
-    describe('RepairMySuffix Service', () => {
+    describe('Repair Service', () => {
         let injector: TestBed;
-        let service: RepairMySuffixService;
+        let service: RepairService;
         let httpMock: HttpTestingController;
 
         beforeEach(() => {
@@ -20,11 +20,11 @@ describe('Service Tests', () => {
                 ],
                 providers: [
                     JhiDateUtils,
-                    RepairMySuffixService
+                    RepairService
                 ]
             });
             injector = getTestBed();
-            service = injector.get(RepairMySuffixService);
+            service = injector.get(RepairService);
             httpMock = injector.get(HttpTestingController);
         });
 
@@ -37,7 +37,7 @@ describe('Service Tests', () => {
                 const resourceUrl = SERVER_API_URL + 'api/repairs';
                 expect(req.request.url).toEqual(resourceUrl + '/' + 123);
             });
-            it('should return RepairMySuffix', () => {
+            it('should return Repair', () => {
 
                 service.find(123).subscribe((received) => {
                     expect(received.body.id).toEqual(123);

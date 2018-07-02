@@ -2,17 +2,17 @@ import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HttpResponse } from '@angular/common/http';
-import { RepairMySuffix } from './repair-my-suffix.model';
-import { RepairMySuffixService } from './repair-my-suffix.service';
+import { Repair } from './repair.model';
+import { RepairService } from './repair.service';
 
 @Injectable()
-export class RepairMySuffixPopupService {
+export class RepairPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private repairService: RepairMySuffixService
+        private repairService: RepairService
 
     ) {
         this.ngbModalRef = null;
@@ -27,8 +27,8 @@ export class RepairMySuffixPopupService {
 
             if (id) {
                 this.repairService.find(id)
-                    .subscribe((repairResponse: HttpResponse<RepairMySuffix>) => {
-                        const repair: RepairMySuffix = repairResponse.body;
+                    .subscribe((repairResponse: HttpResponse<Repair>) => {
+                        const repair: Repair = repairResponse.body;
                         if (repair.startDate) {
                             repair.startDate = {
                                 year: repair.startDate.getFullYear(),
@@ -49,14 +49,14 @@ export class RepairMySuffixPopupService {
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.repairModalRef(component, new RepairMySuffix());
+                    this.ngbModalRef = this.repairModalRef(component, new Repair());
                     resolve(this.ngbModalRef);
                 }, 0);
             }
         });
     }
 
-    repairModalRef(component: Component, repair: RepairMySuffix): NgbModalRef {
+    repairModalRef(component: Component, repair: Repair): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.repair = repair;
         modalRef.result.then((result) => {

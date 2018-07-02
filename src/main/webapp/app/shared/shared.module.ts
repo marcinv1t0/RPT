@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import {
     RptSharedLibsModule,
@@ -17,16 +18,25 @@ import {
     JhiSocialComponent,
     SocialService,
 } from './';
+import {RepairDetailComponent, RepairPopupComponent, repairPopupRoute, repairRoute} from '../entities/repair';
+
+const ENTITY_STATES = [
+    ...repairRoute,
+    ...repairPopupRoute,
+];
 
 @NgModule({
     imports: [
         RptSharedLibsModule,
-        RptSharedCommonModule
+        RptSharedCommonModule,
+        RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         JhiSocialComponent,
         JhiLoginModalComponent,
-        HasAnyAuthorityDirective
+        HasAnyAuthorityDirective,
+        RepairDetailComponent,
+        RepairPopupComponent
     ],
     providers: [
         LoginService,

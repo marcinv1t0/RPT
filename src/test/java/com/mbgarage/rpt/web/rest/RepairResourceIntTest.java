@@ -4,6 +4,7 @@ import com.mbgarage.rpt.RptApp;
 
 import com.mbgarage.rpt.domain.Repair;
 import com.mbgarage.rpt.repository.RepairRepository;
+import com.mbgarage.rpt.service.PhotoService;
 import com.mbgarage.rpt.service.RepairService;
 import com.mbgarage.rpt.service.dto.RepairDTO;
 import com.mbgarage.rpt.service.mapper.RepairMapper;
@@ -68,6 +69,9 @@ public class RepairResourceIntTest {
     private RepairService repairService;
 
     @Autowired
+    private PhotoService photoService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -86,7 +90,7 @@ public class RepairResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final RepairResource repairResource = new RepairResource(repairService);
+        final RepairResource repairResource = new RepairResource(repairService, photoService);
         this.restRepairMockMvc = MockMvcBuilders.standaloneSetup(repairResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

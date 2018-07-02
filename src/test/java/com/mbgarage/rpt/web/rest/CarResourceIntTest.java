@@ -5,6 +5,7 @@ import com.mbgarage.rpt.RptApp;
 import com.mbgarage.rpt.domain.Car;
 import com.mbgarage.rpt.repository.CarRepository;
 import com.mbgarage.rpt.service.CarService;
+import com.mbgarage.rpt.service.UserService;
 import com.mbgarage.rpt.service.dto.CarDTO;
 import com.mbgarage.rpt.service.mapper.CarMapper;
 import com.mbgarage.rpt.web.rest.errors.ExceptionTranslator;
@@ -68,6 +69,9 @@ public class CarResourceIntTest {
     private CarService carService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -86,7 +90,7 @@ public class CarResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final CarResource carResource = new CarResource(carService);
+        final CarResource carResource = new CarResource(carService, userService);
         this.restCarMockMvc = MockMvcBuilders.standaloneSetup(carResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

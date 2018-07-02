@@ -4,33 +4,33 @@ import { Observable } from 'rxjs/Observable';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { RptTestModule } from '../../../test.module';
-import { RepairMySuffixComponent } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix.component';
-import { RepairMySuffixService } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix.service';
-import { RepairMySuffix } from '../../../../../../main/webapp/app/entities/repair-my-suffix/repair-my-suffix.model';
+import { RepairComponent } from '../../../../../../main/webapp/app/entities/repair/repair.component';
+import { RepairService } from '../../../../../../main/webapp/app/entities/repair/repair.service';
+import { Repair } from '../../../../../../main/webapp/app/entities/repair/repair.model';
 
 describe('Component Tests', () => {
 
-    describe('RepairMySuffix Management Component', () => {
-        let comp: RepairMySuffixComponent;
-        let fixture: ComponentFixture<RepairMySuffixComponent>;
-        let service: RepairMySuffixService;
+    describe('Repair Management Component', () => {
+        let comp: RepairComponent;
+        let fixture: ComponentFixture<RepairComponent>;
+        let service: RepairService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [RptTestModule],
-                declarations: [RepairMySuffixComponent],
+                declarations: [RepairComponent],
                 providers: [
-                    RepairMySuffixService
+                    RepairService
                 ]
             })
-            .overrideTemplate(RepairMySuffixComponent, '')
+            .overrideTemplate(RepairComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(RepairMySuffixComponent);
+            fixture = TestBed.createComponent(RepairComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(RepairMySuffixService);
+            service = fixture.debugElement.injector.get(RepairService);
         });
 
         describe('OnInit', () => {
@@ -38,7 +38,7 @@ describe('Component Tests', () => {
                 // GIVEN
                 const headers = new HttpHeaders().append('link', 'link;link');
                 spyOn(service, 'query').and.returnValue(Observable.of(new HttpResponse({
-                    body: [new RepairMySuffix(123)],
+                    body: [new Repair(123)],
                     headers
                 })));
 

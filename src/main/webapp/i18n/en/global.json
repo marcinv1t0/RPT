@@ -9,7 +9,7 @@
                 "main": "Entities",
                 "userExtMySuffix": "User Ext",
                 "restorationMySuffix": "Restoration",
-                "repairMySuffix": "Repair",
+                "repair": "Repair",
                 "subTaskMySuffix": "Sub Task",
                 "photoMySuffix": "Photo",
                 "carMySuffix": "Car",

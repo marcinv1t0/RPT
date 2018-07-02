@@ -1,23 +1,23 @@
 import { Routes } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { RepairMySuffixComponent } from './repair-my-suffix.component';
-import { RepairMySuffixDetailComponent } from './repair-my-suffix-detail.component';
-import { RepairMySuffixPopupComponent } from './repair-my-suffix-dialog.component';
-import { RepairMySuffixDeletePopupComponent } from './repair-my-suffix-delete-dialog.component';
+import { RepairComponent } from './repair.component';
+import { RepairDetailComponent } from './repair-detail.component';
+import { RepairPopupComponent } from './repair-dialog.component';
+import { RepairDeletePopupComponent } from './repair-delete-dialog.component';
 
 export const repairRoute: Routes = [
     {
-        path: 'repair-my-suffix',
-        component: RepairMySuffixComponent,
+        path: 'repair',
+        component: RepairComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.repair.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'repair-my-suffix/:id',
-        component: RepairMySuffixDetailComponent,
+        path: 'repair/:id',
+        component: RepairDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.repair.home.title'
@@ -28,8 +28,8 @@ export const repairRoute: Routes = [
 
 export const repairPopupRoute: Routes = [
     {
-        path: 'repair-my-suffix-new',
-        component: RepairMySuffixPopupComponent,
+        path: 'repair-new',
+        component: RepairPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.repair.home.title'
@@ -38,8 +38,8 @@ export const repairPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'repair-my-suffix/:id/edit',
-        component: RepairMySuffixPopupComponent,
+        path: 'repair/:id/edit',
+        component: RepairPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.repair.home.title'
@@ -48,8 +48,8 @@ export const repairPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
-        path: 'repair-my-suffix/:id/delete',
-        component: RepairMySuffixDeletePopupComponent,
+        path: 'repair/:id/delete',
+        component: RepairDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'rptApp.repair.home.title'

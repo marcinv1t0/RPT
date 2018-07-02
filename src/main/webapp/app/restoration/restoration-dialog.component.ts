@@ -11,6 +11,8 @@ import { RestorationPopupService } from './restoration-popup.service';
 import { RestorationService } from './restoration.service';
 import { Car, CarService } from '../car';
 import {User, UserService} from "../shared";
+import {RepairPopupService} from "../entities/repair/repair-popup.service";
+import {RepairDialogComponent} from "../entities/repair/repair-dialog.component";
 
 @Component({
     selector: 'jhi-restoration-my-suffix-dialog',
@@ -128,3 +130,4 @@ export class RestorationPopupComponent implements OnInit, OnDestroy {
         this.routeSub.unsubscribe();
     }
 }
+

@@ -30,7 +30,7 @@
         <dt><span jhiTranslate="rptApp.photo.repair">Repair</span></dt>
         <dd>
             <div *ngIf="photo.repairId">
-                <a [routerLink]="['/repair-my-suffix', photo.repairId]">{{photo.repairId}}</a>
+                <a [routerLink]="['/repair', photo.repairId]">{{photo.repairId}}</a>
             </div>
         </dd>
     </dl>

@@ -3,18 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager } from 'ng-jhipster';
+import {Repair, RepairService} from './index';
+import {Photo, PhotoService} from "../photo";
 
-import { RepairMySuffix } from './repair-my-suffix.model';
-import { RepairMySuffixService } from './repair-my-suffix.service';
-import {Photo, PhotoService} from '../photo';
 
 @Component({
-    selector: 'jhi-repair-my-suffix-detail',
-    templateUrl: './repair-my-suffix-detail.component.html'
+    selector: 'jhi-repair-detail',
+    templateUrl: './repair-detail.component.html'
 })
-export class RepairMySuffixDetailComponent implements OnInit, OnDestroy {
+export class RepairDetailComponent implements OnInit, OnDestroy {
 
-    repair: RepairMySuffix;
+    repair: Repair;
     photos: Photo[];
     id: number;
     numberduo: number;
@@ -23,7 +22,7 @@ export class RepairMySuffixDetailComponent implements OnInit, OnDestroy {
 
     constructor(
         private eventManager: JhiEventManager,
-        private repairService: RepairMySuffixService,
+        private repairService: RepairService,
         private photoService: PhotoService,
         private route: ActivatedRoute
     ) {
@@ -34,8 +33,8 @@ export class RepairMySuffixDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
-        this.registerChangeInRepairs();
         this.loadAllPhotos();
+        this.registerChangeInRepairs();
     }
 
     loadAllPhotos() {
@@ -43,14 +42,13 @@ export class RepairMySuffixDetailComponent implements OnInit, OnDestroy {
             (res: HttpResponse<Photo[]>) => {
                 this.photos = res.body;
             });
-        this.photos = this.photos.filter((x) => x.repairId === this.id);
-
+        this.photos = this.photos.filter(x => x.repairId === this.id);
     }
 
     load(id) {
         this.id = id;
         this.repairService.find(id)
-            .subscribe((repairResponse: HttpResponse<RepairMySuffix>) => {
+            .subscribe((repairResponse: HttpResponse<Repair>) => {
                 this.repair = repairResponse.body;
             });
     }

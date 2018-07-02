@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="rptApp.repair.home.title">Repairs</span>
-        <button class="btn btn-primary float-right jh-create-entity create-repair-my-suffix" [routerLink]="['/', { outlets: { popup: ['repair-my-suffix-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-repair" [routerLink]="['/', { outlets: { popup: ['repair-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="rptApp.repair.home.createLabel">
             Create new Repair
@@ -28,7 +28,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let repair of repairs ;trackBy: trackId">
-                <td><a [routerLink]="['../repair-my-suffix', repair.id ]">{{repair.id}}</a></td>
+                <td><a [routerLink]="['../repair', repair.id ]">{{repair.id}}</a></td>
                 <td>{{repair.name}}</td>
                 <td>{{repair.description}}</td>
                 <td>{{repair.cost}}</td>
@@ -42,13 +42,13 @@
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../repair-my-suffix', repair.id ]"
+                                [routerLink]="['../repair', repair.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'repair-my-suffix/'+ repair.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'repair/'+ repair.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-primary btn-sm">
@@ -56,7 +56,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'repair-my-suffix/'+ repair.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'repair/'+ repair.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

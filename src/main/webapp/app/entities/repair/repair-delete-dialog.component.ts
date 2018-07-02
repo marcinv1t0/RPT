@@ -4,20 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { RepairMySuffix } from './repair-my-suffix.model';
-import { RepairMySuffixPopupService } from './repair-my-suffix-popup.service';
-import { RepairMySuffixService } from './repair-my-suffix.service';
+import { Repair } from './repair.model';
+import { RepairPopupService } from './repair-popup.service';
+import { RepairService } from './repair.service';
 
 @Component({
     selector: 'jhi-repair-my-suffix-delete-dialog',
-    templateUrl: './repair-my-suffix-delete-dialog.component.html'
+    templateUrl: './repair-delete-dialog.component.html'
 })
-export class RepairMySuffixDeleteDialogComponent {
+export class RepairDeleteDialogComponent {
 
-    repair: RepairMySuffix;
+    repair: Repair;
 
     constructor(
-        private repairService: RepairMySuffixService,
+        private repairService: RepairService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
     ) {
@@ -42,19 +42,19 @@ export class RepairMySuffixDeleteDialogComponent {
     selector: 'jhi-repair-my-suffix-delete-popup',
     template: ''
 })
-export class RepairMySuffixDeletePopupComponent implements OnInit, OnDestroy {
+export class RepairDeletePopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private repairPopupService: RepairMySuffixPopupService
+        private repairPopupService: RepairPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             this.repairPopupService
-                .open(RepairMySuffixDeleteDialogComponent as Component, params['id']);
+                .open(RepairDeleteDialogComponent as Component, params['id']);
         });
     }
 

@@ -33,11 +33,6 @@
                 [(ngModel)]="repair.description" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="rptApp.repair.cost" for="field_cost">Cost</label>
-            <input type="number" class="form-control" name="cost" id="field_cost"
-                [(ngModel)]="repair.cost" />
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="rptApp.repair.startDate" for="field_startDate">Start Date</label>
             <div class="input-group">
                 <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="repair.startDate"

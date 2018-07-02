@@ -8,11 +8,11 @@
                 "createPhoto": "Dodaj zdjęcie",
                 "createOrEditLabel": "Dodaj lub edytuj czynność"
             },
-            "created": "Utworzono nowy Repair z identyfikatorem {{ param }}",
-            "updated": "Uaktualniono Repair z identyfikatorem {{ param }}",
-            "deleted": "Usunięto Repair z identyfikatorem {{ param }}",
+            "created": "Utworzono nową czynność z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono czynność z identyfikatorem {{ param }}",
+            "deleted": "Usunięto czynność z identyfikatorem {{ param }}",
             "delete": {
-                "question": "Czy na pewno chcesz usunąć Repair {{ id }}?"
+                "question": "Czy na pewno chcesz usunąć czynność {{ id }}?"
             },
             "detail": {
                 "title": "Szczegóły naprawy"
@@ -23,8 +23,8 @@
             "startDate": "Data rozpoczęcia",
             "finishDate": "Data zakończenia",
             "subtask": "Subtask",
-            "photo": "Photo",
-            "restoration": "Restoration"
+            "photo": "Zdjęcie",
+            "restoration": "Projekt"
         }
     }
 }

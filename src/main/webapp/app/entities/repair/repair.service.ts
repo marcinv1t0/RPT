@@ -5,39 +5,39 @@ import { SERVER_API_URL } from '../../app.constants';
 
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { RepairMySuffix } from './repair-my-suffix.model';
+import { Repair } from './repair.model';
 import { createRequestOption } from '../../shared';
 
-export type EntityResponseType = HttpResponse<RepairMySuffix>;
+export type EntityResponseType = HttpResponse<Repair>;
 
 @Injectable()
-export class RepairMySuffixService {
+export class RepairService {
 
     private resourceUrl =  SERVER_API_URL + 'api/repairs';
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
-    create(repair: RepairMySuffix): Observable<EntityResponseType> {
+    create(repair: Repair): Observable<EntityResponseType> {
         const copy = this.convert(repair);
-        return this.http.post<RepairMySuffix>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.post<Repair>(this.resourceUrl, copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    update(repair: RepairMySuffix): Observable<EntityResponseType> {
+    update(repair: Repair): Observable<EntityResponseType> {
         const copy = this.convert(repair);
-        return this.http.put<RepairMySuffix>(this.resourceUrl, copy, { observe: 'response' })
+        return this.http.put<Repair>(this.resourceUrl, copy, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<RepairMySuffix>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Repair>(`${this.resourceUrl}/${id}`, { observe: 'response'})
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
-    query(req?: any): Observable<HttpResponse<RepairMySuffix[]>> {
+    query(req?: any): Observable<HttpResponse<Repair[]>> {
         const options = createRequestOption(req);
-        return this.http.get<RepairMySuffix[]>(this.resourceUrl, { params: options, observe: 'response' })
-            .map((res: HttpResponse<RepairMySuffix[]>) => this.convertArrayResponse(res));
+        return this.http.get<Repair[]>(this.resourceUrl, { params: options, observe: 'response' })
+            .map((res: HttpResponse<Repair[]>) => this.convertArrayResponse(res));
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
@@ -45,13 +45,13 @@ export class RepairMySuffixService {
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
-        const body: RepairMySuffix = this.convertItemFromServer(res.body);
+        const body: Repair = this.convertItemFromServer(res.body);
         return res.clone({body});
     }
 
-    private convertArrayResponse(res: HttpResponse<RepairMySuffix[]>): HttpResponse<RepairMySuffix[]> {
-        const jsonResponse: RepairMySuffix[] = res.body;
-        const body: RepairMySuffix[] = [];
+    private convertArrayResponse(res: HttpResponse<Repair[]>): HttpResponse<Repair[]> {
+        const jsonResponse: Repair[] = res.body;
+        const body: Repair[] = [];
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(this.convertItemFromServer(jsonResponse[i]));
         }
@@ -59,10 +59,10 @@ export class RepairMySuffixService {
     }
 
     /**
-     * Convert a returned JSON object to RepairMySuffix.
+     * Convert a returned JSON object to Repair.
      */
-    private convertItemFromServer(repair: RepairMySuffix): RepairMySuffix {
-        const copy: RepairMySuffix = Object.assign({}, repair);
+    private convertItemFromServer(repair: Repair): Repair {
+        const copy: Repair = Object.assign({}, repair);
         copy.startDate = this.dateUtils
             .convertLocalDateFromServer(repair.startDate);
         copy.finishDate = this.dateUtils
@@ -71,10 +71,10 @@ export class RepairMySuffixService {
     }
 
     /**
-     * Convert a RepairMySuffix to a JSON which can be sent to the server.
+     * Convert a Repair to a JSON which can be sent to the server.
      */
-    private convert(repair: RepairMySuffix): RepairMySuffix {
-        const copy: RepairMySuffix = Object.assign({}, repair);
+    private convert(repair: Repair): Repair {
+        const copy: Repair = Object.assign({}, repair);
         copy.startDate = this.dateUtils
             .convertLocalDateToServer(repair.startDate);
         copy.finishDate = this.dateUtils

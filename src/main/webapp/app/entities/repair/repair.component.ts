@@ -3,21 +3,21 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { RepairMySuffix } from './repair-my-suffix.model';
-import { RepairMySuffixService } from './repair-my-suffix.service';
+import { Repair } from './repair.model';
+import { RepairService } from './repair.service';
 import { Principal } from '../../shared';
 
 @Component({
     selector: 'jhi-repair-my-suffix',
-    templateUrl: './repair-my-suffix.component.html'
+    templateUrl: './repair.component.html'
 })
-export class RepairMySuffixComponent implements OnInit, OnDestroy {
-repairs: RepairMySuffix[];
+export class RepairComponent implements OnInit, OnDestroy {
+repairs: Repair[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
     constructor(
-        private repairService: RepairMySuffixService,
+        private repairService: RepairService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private principal: Principal
@@ -26,7 +26,7 @@ repairs: RepairMySuffix[];
 
     loadAll() {
         this.repairService.query().subscribe(
-            (res: HttpResponse<RepairMySuffix[]>) => {
+            (res: HttpResponse<Repair[]>) => {
                 this.repairs = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
@@ -44,7 +44,7 @@ repairs: RepairMySuffix[];
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: RepairMySuffix) {
+    trackId(index: number, item: Repair) {
         return item.id;
     }
     registerChangeInRepairs() {
